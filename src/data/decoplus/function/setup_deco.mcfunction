@@ -8,6 +8,9 @@ execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_da
 execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"round_barrel"}] run function decoplus:spawn/round_barrel
 execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"trash_can"}] run function decoplus:spawn/trash_can
 
+# Rotate decoration
+execute as @e[type=!player,type=!minecraft:armor_stand,distance=..1.2] positioned as @s facing entity @p feet run rotate @s ~ 0
+
 # Spawn triggerbox & disable the armor stand
 summon interaction ~ ~ ~ {width:1f,height:1f,Tags:["deco_triggerbox"]}
 tag @s add deco_armorstand
