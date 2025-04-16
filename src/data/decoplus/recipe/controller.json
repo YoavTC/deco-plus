@@ -44,7 +44,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "controller"
+        "deco_id": "controller",
+        "deco_size": "small"
       },
       "minecraft:custom_name": {
         "text": "Controller Decoration",

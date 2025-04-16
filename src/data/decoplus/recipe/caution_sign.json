@@ -39,7 +39,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "caution_sign"
+        "deco_id": "caution_sign",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "Caution Sign Decoration",

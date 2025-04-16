@@ -40,7 +40,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "round_barrel"
+        "deco_id": "round_barrel",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "Round Barrel Decoration",

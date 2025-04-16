@@ -41,7 +41,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "lamp"
+        "deco_id": "lamp",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "Lamp Decoration",

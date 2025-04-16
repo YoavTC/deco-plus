@@ -41,7 +41,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "telescope"
+        "deco_id": "telescope",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "Telescope Decoration",

@@ -40,7 +40,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "sitting_skeleton"
+        "deco_id": "sitting_skeleton",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "Sitting Skeleton Decoration",

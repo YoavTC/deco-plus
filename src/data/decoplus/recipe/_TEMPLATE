@@ -39,7 +39,8 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "%NAME%"
+        "deco_id": "%NAME%",
+        "deco_size": "default"
       },
       "minecraft:custom_name": {
         "text": "%NAME% Decoration",

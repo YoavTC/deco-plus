@@ -1,11 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": "#spruce_logs"
+    "T": "minecraft:spruce_trapdoor",
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
-    "## ",
-    "###"
+    "TNT",
+    "TNT"
   ],
   "result": {
     "components": {
@@ -13,7 +14,7 @@
         "properties": [
           {
             "name": "textures",
-            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGFjYzU4ODhmMDc2MDQyY2QyMDM0MmM4MzVmOWQ2Y2I4YjgzN2UzNTAyYjRiZWUzYzhkMDI2MDQ4OTFjNzE1NSJ9fX0="
+            "value": "ewogICJ0aW1lc3RhbXAiIDogMTc0NDgwMzU5Mjc1OCwKICAicHJvZmlsZUlkIiA6ICJmZjQ3NzI5YmQwZDI0YWYwOThiMTFjMGE3ZTFiMGVlZiIsCiAgInByb2ZpbGVOYW1lIiA6ICJtYXRzY2FuIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzljYTUwNGZjNmQ4NTE0ZWY2Y2I4ODk4NDRhN2FkNDY1MjAxYWYxNmI5NWU0NDQ4MTk2ZGZlNWZjNTVmYzgzZDkiCiAgICB9CiAgfQp9"
           }
         ]
       },
@@ -38,11 +39,11 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "fire_log_pile",
+        "deco_id": "window_barricades",
         "deco_size": "default"
       },
       "minecraft:custom_name": {
-        "text": "Fire Log Pile Decoration",
+        "text": "Window Barricades Decoration",
         "color": "#ffbf00",
         "bold": false,
         "italic": false
@@ -50,7 +51,7 @@
       "minecraft:lore": [
         [
           {
-            "text": "Model by HappyWaffle5897",
+            "text": "Model by KRiSinnit",
             "color": "dark_gray",
             "bold": false,
             "italic": false
@@ -58,7 +59,7 @@
         ],
         [
           {
-            "text": "bde.gg/b/36650",
+            "text": "bde.gg/b/18586",
             "color": "dark_gray",
             "bold": false,
             "italic": false
