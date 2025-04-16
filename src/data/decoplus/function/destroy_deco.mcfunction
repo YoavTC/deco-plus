@@ -1,5 +1,5 @@
 # Re-enable the armor stand
-data merge entity @e[type=armor_stand,sort=nearest,limit=1] {Invulnerable:0b,Invisible:0b,Tags:[deco_armorstand]}
+data merge entity @e[type=armor_stand,sort=nearest,limit=1] {Marker:0b,Invisible:0b,Tags:[deco_armorstand]}
 
 # Destroy the armor stand & drop the decoration item
 damage @e[type=armor_stand,sort=nearest,limit=1] 1 arrow

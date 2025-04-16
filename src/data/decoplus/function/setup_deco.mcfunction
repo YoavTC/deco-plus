@@ -5,8 +5,9 @@ execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_da
 execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"controller"}] run function decoplus:spawn/controller
 execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"lamp"}] run function decoplus:spawn/lamp
 execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"caution_sign"}] run function decoplus:spawn/caution_sign
+execute if items entity @s armor.chest minecraft:player_head[minecraft:custom_data~{deco_id:"round_barrel"}] run function decoplus:spawn/round_barrel
 
 # Spawn triggerbox & disable the armor stand
 summon interaction ~ ~ ~ {width:1f,height:1f,Tags:["deco_triggerbox"]}
 tag @s add deco_armorstand
-data merge entity @s {NoGravity:1b,Invulnerable:1b,Invisible:1b,DisabledSlots:4144959}
+data merge entity @s {Marker:1b,Invisible:1b}
