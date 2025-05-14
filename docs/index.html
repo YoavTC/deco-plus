@@ -17,10 +17,10 @@
             justify-content: center;
             align-items: center;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1700px;
             margin: auto;
             width: 100%;
         }
@@ -174,6 +174,51 @@
             <h3>Trash Can</h3>
             <a target="_blank" href="https://bde.gg/u/Rasterio_/">@Rasterio_</a>
         </div>
+        <div class="grid-item" style="background-color: #545645;">
+            <img onclick="openModal(this)" src="recipe images/window barricades recipe.png">
+            <h3>Window Barricades</h3>
+            <a target="_blank" href="https://bde.gg/u/luiginhoyt">@KRiSinnit</a>
+        </div>
+        <div class="grid-item" style="background-color: #41381c;">
+            <img onclick="openModal(this)" src="recipe images/wooden beer mug.png">
+            <h3>Wooden Beer Mug</h3>
+            <a target="_blank" href="https://bde.gg/u/shard">@shard</a>
+        </div>
+        <div class="grid-item" style="background-color: #26411c;">
+            <img onclick="openModal(this)" src="recipe images/tiny tree recipe.png">
+            <h3>Tiny Tree</h3>
+            <a target="_blank" href="https://bde.gg/u/lerocher44">@LeRocher44</a>
+        </div>
+        <div class="grid-item" style="background-color: #878a8e;">
+            <img onclick="openModal(this)" src="recipe images/rocks recipe.png">
+            <h3>Rocks</h3>
+            <a target="_blank" href="https://bde.gg/u/Deadtale">@Deadtale2659</a>
+        </div>
+        <div class="grid-item" style="background-color: #6b262b;">
+            <img onclick="openModal(this)" src="recipe images/red clock recipe.png">
+            <h3>Red Clock</h3>
+            <a target="_blank" href="https://zolmik.bde.gg">@__ZolMik__</a>
+        </div>
+        <div class="grid-item" style="background-color: #453233;">
+            <img onclick="openModal(this)" src="recipe images/punching bag recipe.png">
+            <h3>Punching Bag</h3>
+            <a target="_blank" href="https://bde.gg/u/Dewox">@Dewox</a>
+        </div>
+        <div class="grid-item" style="background-color: #44626a;">
+            <img onclick="openModal(this)" src="recipe images/globe recipe.png">
+            <h3>Globe</h3>
+            <a target="_blank" href="https://bde.gg/u/shard">@shard</a>
+        </div>
+        <div class="grid-item" style="background-color: #c87055;">
+            <img onclick="openModal(this)" src="recipe images/fake herobrine recipe.png">
+            <h3>Fake Herobrine</h3>
+            <a target="_blank" href="https://bde.gg/u/Mastay">@Mastay</a>
+        </div>
+        <div class="grid-item" style="background-color: #645846;">
+            <img onclick="openModal(this)" src="recipe images/chess board recipe.png">
+            <h3>Chess Board</h3>
+            <a target="_blank" href="https://zolmik.bde.gg">@__ZolMik__</a>
+        </div>
     </div>
     <!-- Modal -->
     <div class="modal" id="imageModal">
@@ -195,6 +240,22 @@
             const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
         }
+
+        // Sort grid items alphabetically by their <h3> text
+        document.addEventListener('DOMContentLoaded', () => {
+            const gridContainer = document.querySelector('.grid-container');
+            const gridItems = Array.from(gridContainer.children);
+
+            // Sort the items based on the text content of <h3>
+            gridItems.sort((a, b) => {
+                const textA = a.querySelector('h3').textContent.toLowerCase();
+                const textB = b.querySelector('h3').textContent.toLowerCase();
+                return textA.localeCompare(textB);
+            });
+
+            // Append the sorted items back to the container
+            gridItems.forEach(item => gridContainer.appendChild(item));
+        });
     </script>
 </body>
 </html>
