@@ -1,6 +1,20 @@
 {
-    "pack": {
-        "description": "Better decorations",
-        "pack_format": 71
-  }
+	"pack": {
+		"description": [
+			{
+				"text": "Made by Yoav TC\n",
+				"color": "dark_gray"
+			},
+			{
+				"text": "www.yoavtc.work",
+				"color": "blue",
+				"underlined": true
+			}
+		],
+		"pack_format": 71,
+		"supported_formats": [
+			71,
+			81
+		]
+	}
 }
