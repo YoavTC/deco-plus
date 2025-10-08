@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "D": "minecraft:dark_oak_button",
-    "B": "minecraft:birch_button",
-    "S": "minecraft:spruce_slab"
+    "#": "minecraft:dark_oak_button",
+    "A": "minecraft:birch_button",
+    "B": "minecraft:spruce_slab"
   },
   "pattern": [
-    "BDB",
-    "DBD",
-    "SSS"
+    "A#A",
+    "#A#",
+    "BBB"
   ],
   "result": {
     "components": {

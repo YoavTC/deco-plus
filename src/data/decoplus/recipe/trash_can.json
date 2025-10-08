@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": "minecraft:cauldron",
-    "T": "minecraft:iron_trapdoor"
+    "#": "minecraft:cauldron",
+    "A": "minecraft:iron_trapdoor"
   },
   "pattern": [
-    " T ",
-    " C "
+    " A ",
+    " # "
   ],
   "result": {
     "components": {

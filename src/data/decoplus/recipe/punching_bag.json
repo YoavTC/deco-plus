@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "B": "minecraft:birch_sign",
-    "R": "minecraft:red_wool"
+    "#": "minecraft:birch_sign",
+    "A": "minecraft:red_wool"
   },
   "pattern": [
-    " R ",
-    " R ",
-    " B "
+    " A ",
+    " A ",
+    " # "
   ],
   "result": {
     "components": {

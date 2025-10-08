@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "A": "minecraft:andesite",
-    "S": "#decoplus:rock_blocks"
+    "#": "minecraft:andesite",
+    "A": "#decoplus:rock_blocks"
   },
   "pattern": [
-    "AS ",
-    "SAS"
+    "#A ",
+    "A#A"
   ],
   "result": {
     "components": {

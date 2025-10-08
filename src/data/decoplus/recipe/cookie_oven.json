@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "M": "minecraft:minecart",
-    "B": "minecraft:cookie"
+    "#": "minecraft:minecart",
+    "A": "minecraft:cookie"
   },
   "pattern": [
-    " B ",
-    " M "
+    " A ",
+    " # "
   ],
   "result": {
     "components": {

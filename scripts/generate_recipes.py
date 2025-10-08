@@ -2,6 +2,43 @@ import json
 import csv
 import os
 
+def recipe_output_to_loot_table(recipe_data):
+    """
+    Converts Minecraft recipe output to a loot table JSON.
+    """
+    result = recipe_data.get("result", {})
+    item_id = result.get("id", "minecraft:air")
+    item_count = result.get("count", 1)
+    components = result.get("components", {})
+
+    entry = {
+        "type": "minecraft:item",
+        "name": item_id,
+    }
+    functions = []
+    if components:
+        functions.append({
+            "function": "minecraft:set_components",
+            "components": components
+        })
+    if item_count > 1:
+        functions.append({
+            "function": "minecraft:set_count",
+            "count": item_count
+        })
+    if functions:
+        entry["functions"] = functions
+
+    loot_table = {
+        "pools": [
+            {
+                "rolls": 1,
+                "entries": [entry]
+            }
+        ]
+    }
+    return loot_table
+
 def load_original_keys(item_id, original_recipe_dir):
     """Load the original key mappings, custom name, and deco_id from existing recipe file"""
     original_file = os.path.join(original_recipe_dir, f'{item_id}.json')
@@ -162,11 +199,18 @@ def main():
     project_root = os.path.dirname(script_dir)
     
     csv_file = os.path.join(script_dir, 'items.csv')
-    output_dir = os.path.join(project_root, 'temp_recipes')
+    recipe_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'recipe')
+    loot_table_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'loot_table')
+    function_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'function')
     original_recipe_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'recipe')
     
-    # Create output directory
-    os.makedirs(output_dir, exist_ok=True)
+    # Create output directories
+    os.makedirs(recipe_output_dir, exist_ok=True)
+    os.makedirs(loot_table_output_dir, exist_ok=True)
+    os.makedirs(function_output_dir, exist_ok=True)
+    
+    # List to store all recipe IDs for the mcfunction file
+    recipe_ids = []
     
     # Read CSV and generate recipes
     with open(csv_file, 'r', encoding='utf-8') as f:
@@ -187,14 +231,34 @@ def main():
             # Generate recipe JSON
             recipe = create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, author, url, original_data)
             
-            # Write to file
-            output_file = os.path.join(output_dir, f'{item_id}.json')
-            with open(output_file, 'w', encoding='utf-8') as out_f:
+            # Write recipe to file
+            recipe_output_file = os.path.join(recipe_output_dir, f'{item_id}.json')
+            with open(recipe_output_file, 'w', encoding='utf-8') as out_f:
                 json.dump(recipe, out_f, indent=2, ensure_ascii=False)
             
-            print(f'Generated: {item_id}.json')
+            # Generate loot table from recipe
+            loot_table = recipe_output_to_loot_table(recipe)
+            
+            # Write loot table to file
+            loot_table_output_file = os.path.join(loot_table_output_dir, f'{item_id}.json')
+            with open(loot_table_output_file, 'w', encoding='utf-8') as out_f:
+                json.dump(loot_table, out_f, indent=2, ensure_ascii=False)
+            
+            # Add to recipe IDs list
+            recipe_ids.append(item_id)
+            
+            print(f'Generated: {item_id}.json (recipe and loot table)')
     
-    print(f'\nAll recipes generated in: {output_dir}')
+    # Generate grant_all_recipes.mcfunction file
+    mcfunction_file = os.path.join(function_output_dir, 'give_all_recipes.mcfunction')
+    with open(mcfunction_file, 'w', encoding='utf-8') as f:
+        for recipe_id in recipe_ids:
+            f.write(f'recipe give @a decoplus:{recipe_id}\n')
+    
+    print(f'Generated: give_all_recipes.mcfunction')
+    print(f'\nRecipes generated in: {recipe_output_dir}')
+    print(f'Loot tables generated in: {loot_table_output_dir}')
+    print(f'Function generated in: {function_output_dir}')
 
 if __name__ == '__main__':
     main()

@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": "minecraft:clock",
-    "R": "minecraft:red_concrete",
-    "L": "minecraft:lightning_rod"
+    "#": "minecraft:clock",
+    "A": "minecraft:red_concrete",
+    "B": "minecraft:lightning_rod"
   },
   "pattern": [
-    " L ",
-    "RCR",
-    " R "
+    " B ",
+    "A#A",
+    " A "
   ],
   "result": {
     "components": {

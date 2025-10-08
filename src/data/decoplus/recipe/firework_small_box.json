@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "S": "minecraft:spruce_slab",
-    "T": "minecraft:spruce_trapdoor",
-    "F": "minecraft:firework_rocket"
+    "#": "minecraft:spruce_slab",
+    "A": "minecraft:spruce_trapdoor",
+    "B": "minecraft:firework_rocket"
   },
   "pattern": [
-    "TFT",
-    "SSS"
+    "ABA",
+    "###"
   ],
   "result": {
     "components": {

@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "L": "#dark_oak_logs",
-    "M": "minecraft:magma_block",
+    "#": "#dark_oak_logs",
+    "A": "minecraft:magma_block",
     "B": "minecraft:glass_bottle"
   },
   "pattern": [
-    " L ",
-    " M ",
+    " # ",
+    " A ",
     " B "
   ],
   "result": {

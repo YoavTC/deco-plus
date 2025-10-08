@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": "minecraft:cyan_wool",
-    "B": "minecraft:blue_wool",
-    "O": "minecraft:oak_planks",
-    "N": "minecraft:netherrack"
+    "#": "minecraft:cyan_wool",
+    "A": "minecraft:blue_wool",
+    "B": "minecraft:oak_planks",
+    "C": "minecraft:netherrack"
   },
   "pattern": [
-    " N ",
-    "OCO",
-    " B "
+    " C ",
+    "B#B",
+    " A "
   ],
   "result": {
     "components": {
@@ -46,7 +46,7 @@
         "deco_size": "tall"
       },
       "minecraft:custom_name": {
-        "text": "Fake Herobrone Decoration",
+        "text": "Fake Herobrine Decoration",
         "color": "#ffbf00",
         "bold": false,
         "italic": false

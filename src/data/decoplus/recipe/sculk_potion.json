@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "L": "#dark_oak_logs",
-    "S": "minecraft:sculk",
+    "#": "#dark_oak_logs",
+    "A": "minecraft:sculk",
     "B": "minecraft:glass_bottle"
   },
   "pattern": [
-    " L ",
-    " S ",
+    " # ",
+    " A ",
     " B "
   ],
   "result": {

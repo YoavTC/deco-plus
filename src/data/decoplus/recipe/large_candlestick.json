@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": "#minecraft:candles",
-    "I": "minecraft:iron_ingot",
-    "H": "minecraft:chain"
+    "#": "#minecraft:candles",
+    "A": "minecraft:iron_ingot",
+    "B": "minecraft:chain"
   },
   "pattern": [
-    "CCC",
-    " H ",
-    "III"
+    "###",
+    " B ",
+    "AAA"
   ],
   "result": {
     "components": {
