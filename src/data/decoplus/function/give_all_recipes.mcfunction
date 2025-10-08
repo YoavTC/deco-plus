@@ -25,3 +25,8 @@ recipe give @a decoplus:window_barricades
 recipe give @a decoplus:wooden_beer_mug
 recipe give @a decoplus:sewing_machine
 recipe give @a decoplus:harp
+recipe give @a decoplus:glow_berries_barrel
+recipe give @a decoplus:sweet_berries_barrel
+recipe give @a decoplus:fish_barrel
+recipe give @a decoplus:potato_barrel
+recipe give @a decoplus:weapons_barrel
