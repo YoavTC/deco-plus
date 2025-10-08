@@ -24,3 +24,4 @@ recipe give @a decoplus:trash_can
 recipe give @a decoplus:window_barricades
 recipe give @a decoplus:wooden_beer_mug
 recipe give @a decoplus:sewing_machine
+recipe give @a decoplus:harp
