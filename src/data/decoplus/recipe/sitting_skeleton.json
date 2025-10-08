@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": "minecraft:bone",
-    "B": "minecraft:bone_block",
-    "X": "minecraft:skeleton_skull"
+    "A": "minecraft:bone_block",
+    "B": "minecraft:skeleton_skull"
   },
   "pattern": [
-    " X ",
-    "#B#"
+    " B ",
+    "#A#"
   ],
   "result": {
     "components": {

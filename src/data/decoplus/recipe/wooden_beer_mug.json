@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "I": "minecraft:iron_nugget",
-    "W": "minecraft:spruce_wood",
-    "P": "minecraft:spruce_planks"
+    "#": "minecraft:iron_nugget",
+    "A": "minecraft:spruce_wood",
+    "B": "minecraft:spruce_planks"
   },
   "pattern": [
-    "PIP",
-    " W "
+    "B#B",
+    " A "
   ],
   "result": {
     "components": {

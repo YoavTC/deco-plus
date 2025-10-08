@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": "minecraft:creeper_head",
-    "T": "minecraft:tnt",
-    "L": "minecraft:lime_wool"
+    "#": "minecraft:creeper_head",
+    "A": "minecraft:tnt",
+    "B": "minecraft:lime_wool"
   },
   "pattern": [
-    " C ",
-    "LTL",
-    " L "
+    " # ",
+    "BAB",
+    " B "
   ],
   "result": {
     "components": {

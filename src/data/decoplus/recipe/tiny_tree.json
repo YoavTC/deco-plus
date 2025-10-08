@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "L": "minecraft:oak_log",
-    "F": "minecraft:oak_leaves"
+    "#": "minecraft:oak_log",
+    "A": "minecraft:oak_leaves"
   },
   "pattern": [
-    " F ",
-    "FFF",
-    " L "
+    " A ",
+    "AAA",
+    " # "
   ],
   "result": {
     "components": {

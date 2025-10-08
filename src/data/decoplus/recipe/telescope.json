@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": "minecraft:iron_ingot",
-    "N": "minecraft:iron_nugget",
-    "S": "minecraft:spyglass"
+    "A": "minecraft:iron_nugget",
+    "B": "minecraft:spyglass"
   },
   "pattern": [
-    "  S",
+    "  B",
     " # ",
-    "#N#"
+    "#A#"
   ],
   "result": {
     "components": {

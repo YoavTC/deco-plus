@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "W": "minecraft:lime_wool",
-    "L": "minecraft:lantern",
-    "S": "minecraft:oak_slab"
+    "#": "minecraft:lime_wool",
+    "A": "minecraft:lantern",
+    "B": "minecraft:oak_slab"
   },
   "pattern": [
-    " W ",
-    "WLW",
-    " S "
+    " # ",
+    "#A#",
+    " B "
   ],
   "result": {
     "components": {

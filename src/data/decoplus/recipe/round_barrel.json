@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "B": "minecraft:barrel",
-    "S": "minecraft:stick"
+    "#": "minecraft:barrel",
+    "A": "minecraft:stick"
   },
   "pattern": [
-    " S ",
-    "SBS",
-    " S "
+    " A ",
+    "A#A",
+    " A "
   ],
   "result": {
     "components": {

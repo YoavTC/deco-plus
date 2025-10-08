@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "T": "minecraft:spruce_trapdoor",
-    "N": "minecraft:iron_nugget"
+    "#": "minecraft:spruce_trapdoor",
+    "A": "minecraft:iron_nugget"
   },
   "pattern": [
-    "TNT",
-    "TNT"
+    "#A#",
+    "#A#"
   ],
   "result": {
     "components": {

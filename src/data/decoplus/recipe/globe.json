@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "H": "minecraft:heart_of_the_sea",
-    "L": "minecraft:lectern"
+    "#": "minecraft:heart_of_the_sea",
+    "A": "minecraft:lectern"
   },
   "pattern": [
-    " H ",
-    " L "
+    " # ",
+    " A "
   ],
   "result": {
     "components": {

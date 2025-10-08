@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "L": "#dark_oak_logs",
-    "S": "minecraft:slime_block",
+    "#": "#dark_oak_logs",
+    "A": "minecraft:slime_block",
     "B": "minecraft:glass_bottle"
   },
   "pattern": [
-    " L ",
-    " S ",
+    " # ",
+    " A ",
     " B "
   ],
   "result": {
@@ -45,7 +45,7 @@
         "deco_size": "small"
       },
       "minecraft:custom_name": {
-        "text": "SLime Block Potion Decoration",
+        "text": "Slime Block Potion Decoration",
         "color": "#ffbf00",
         "bold": false,
         "italic": false

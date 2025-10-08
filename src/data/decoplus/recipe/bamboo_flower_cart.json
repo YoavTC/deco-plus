@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "B": "minecraft:bamboo_planks",
-    "T": "minecraft:bamboo_trapdoor",
-    "S": "#minecraft:small_flowers",
-    "F": "#decoplus:big_flowers"
+    "#": "minecraft:bamboo_planks",
+    "A": "minecraft:bamboo_trapdoor",
+    "B": "#minecraft:small_flowers",
+    "C": "#decoplus:big_flowers"
   },
   "pattern": [
-    "TTT",
-    "SFS",
-    "B B"
+    "AAA",
+    "BCB",
+    "# #"
   ],
   "result": {
     "components": {

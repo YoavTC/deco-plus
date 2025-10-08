@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "Y": "minecraft:yellow_concrete",
-    "B": "minecraft:black_concrete"
+    "#": "minecraft:yellow_concrete",
+    "A": "minecraft:black_concrete"
   },
   "pattern": [
-    "YBY",
-    "Y Y"
+    "#A#",
+    "# #"
   ],
   "result": {
     "components": {
