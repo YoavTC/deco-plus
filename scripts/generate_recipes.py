@@ -202,12 +202,14 @@ def main():
     recipe_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'recipe')
     loot_table_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'loot_table')
     function_output_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'function')
+    spawn_function_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'function', 'spawn')
     original_recipe_dir = os.path.join(project_root, 'src', 'data', 'decoplus', 'recipe')
     
     # Create output directories
     os.makedirs(recipe_output_dir, exist_ok=True)
     os.makedirs(loot_table_output_dir, exist_ok=True)
     os.makedirs(function_output_dir, exist_ok=True)
+    os.makedirs(spawn_function_dir, exist_ok=True)
     
     # List to store all recipe IDs for the mcfunction file
     recipe_ids = []
@@ -244,6 +246,13 @@ def main():
             with open(loot_table_output_file, 'w', encoding='utf-8') as out_f:
                 json.dump(loot_table, out_f, indent=2, ensure_ascii=False)
             
+            # Generate spawn function file if it doesn't exist
+            spawn_function_file = os.path.join(spawn_function_dir, f'{item_id}.mcfunction')
+            if not os.path.exists(spawn_function_file):
+                with open(spawn_function_file, 'w', encoding='utf-8') as out_f:
+                    out_f.write('')  # Create empty file
+                print(f'Generated: spawn/{item_id}.mcfunction (empty)')
+            
             # Add to recipe IDs list
             recipe_ids.append(item_id)
             
@@ -258,6 +267,7 @@ def main():
     print(f'Generated: give_all_recipes.mcfunction')
     print(f'\nRecipes generated in: {recipe_output_dir}')
     print(f'Loot tables generated in: {loot_table_output_dir}')
+    print(f'Spawn functions generated in: {spawn_function_dir}')
     print(f'Function generated in: {function_output_dir}')
 
 if __name__ == '__main__':
