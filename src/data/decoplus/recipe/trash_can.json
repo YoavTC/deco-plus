@@ -40,7 +40,8 @@
       "minecraft:custom_data": {
         "deco": true,
         "deco_id": "trash_can",
-        "deco_size": "default"
+        "deco_width": 1.0,
+        "deco_height": 1.0
       },
       "minecraft:custom_name": {
         "text": "Trash Can Decoration",

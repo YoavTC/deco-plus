@@ -43,7 +43,8 @@
       "minecraft:custom_data": {
         "deco": true,
         "deco_id": "bamboo_flower_cart",
-        "deco_size": "large"
+        "deco_width": 2.0,
+        "deco_height": 2.0
       },
       "minecraft:custom_name": {
         "text": "Bamboo Flower Cart Decoration",

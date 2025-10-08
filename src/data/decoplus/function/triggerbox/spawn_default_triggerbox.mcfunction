@@ -1,1 +1,0 @@
-summon interaction ~ ~ ~ {width:1f,height:1f,Tags:["deco_triggerbox"]}
