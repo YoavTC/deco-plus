@@ -109,6 +109,11 @@ def create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, au
     # Convert numeric pattern to recipe pattern
     pattern = numeric_to_pattern(recipe_pattern, keys)
     
+    # Parse hitbox into width and height
+    hitbox_parts = hitbox.split(',')
+    width = float(hitbox_parts[0].strip())
+    height = float(hitbox_parts[1].strip())
+    
     # Use original custom name if available, otherwise generate from item_id
     if original_data and 'custom_name' in original_data:
         custom_name = original_data['custom_name']
@@ -158,7 +163,9 @@ def create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, au
                 "minecraft:custom_data": {
                     "deco": True,
                     "deco_id": deco_id,
-                    "deco_size": hitbox
+                    "deco_width": width,
+                    "deco_height": height
+                    # "deco_size": deco_size
                 },
                 "minecraft:custom_name": {
                     "text": custom_name,
@@ -269,6 +276,57 @@ def main():
     print(f'Loot tables generated in: {loot_table_output_dir}')
     print(f'Spawn functions generated in: {spawn_function_dir}')
     print(f'Function generated in: {function_output_dir}')
+    
+    # Process spawn function files to ensure Tags:[deco_parent] is present
+    process_spawn_functions(spawn_function_dir)
+
+def process_spawn_functions(spawn_function_dir):
+    """Process all spawn function files to ensure summon commands have Tags:[deco_parent]"""
+    import os
+    import re
+    
+    print(f'\nProcessing spawn function files...')
+    
+    for filename in os.listdir(spawn_function_dir):
+        if filename.endswith('.mcfunction'):
+            filepath = os.path.join(spawn_function_dir, filename)
+            
+            # Read the file
+            with open(filepath, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Skip empty files
+            if not content.strip():
+                continue
+            
+            # Process each line that starts with summon
+            lines = content.split('\n')
+            modified = False
+            
+            for i, line in enumerate(lines):
+                if line.strip().startswith('summon '):
+                    # Check if Tags:[deco_parent] is already present
+                    if 'Tags:[deco_parent]' not in line:
+                        # Find the position after the coordinates (~ ~ ~) and before the opening brace
+                        match = re.search(r'(summon\s+\S+\s+~\s+~\s+~\s+)(\{.*)', line)
+                        if match:
+                            prefix = match.group(1)
+                            nbt_data = match.group(2)
+                            
+                            # Insert Tags:[deco_parent] at the beginning of NBT data
+                            if nbt_data.startswith('{') and len(nbt_data) > 1:
+                                # Insert after the opening brace
+                                new_line = prefix + '{Tags:[deco_parent],' + nbt_data[1:]
+                                lines[i] = new_line
+                                modified = True
+                                print(f'  Updated {filename}: Added Tags:[deco_parent]')
+            
+            # Write back if modified
+            if modified:
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    f.write('\n'.join(lines))
+    
+    print('Spawn function processing complete.')
 
 if __name__ == '__main__':
     main()

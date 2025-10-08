@@ -41,7 +41,8 @@
       "minecraft:custom_data": {
         "deco": true,
         "deco_id": "wooden_beer_mug",
-        "deco_size": "small"
+        "deco_width": 0.5,
+        "deco_height": 0.5
       },
       "minecraft:custom_name": {
         "text": "Wooden Beer Mug Decoration",

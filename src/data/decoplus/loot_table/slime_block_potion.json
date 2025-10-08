@@ -40,7 +40,8 @@
                 "minecraft:custom_data": {
                   "deco": true,
                   "deco_id": "slime_block_potion",
-                  "deco_size": "small"
+                  "deco_width": 0.5,
+                  "deco_height": 0.5
                 },
                 "minecraft:custom_name": {
                   "text": "Slime Block Potion Decoration",

@@ -41,7 +41,8 @@
       "minecraft:custom_data": {
         "deco": true,
         "deco_id": "tiny_tree",
-        "deco_size": "tall"
+        "deco_width": 1.0,
+        "deco_height": 2.0
       },
       "minecraft:custom_name": {
         "text": "Tiny Tree Decoration",
