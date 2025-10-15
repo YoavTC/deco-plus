@@ -1,0 +1,32 @@
+{
+  "parent": "decoplus:events/on_deco_block_place",
+  "criteria": {
+    "place": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#decoplus:player_head",
+                "nbt": "{components:{\"minecraft:custom_data\":{deco_id:\"lamp\"}}}"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "place"
+    ]
+  ],
+  "rewards": {
+    "function": "decoplus:event_listeners/on_deco_block_place",
+    "loot": [
+      "decoplus:lamp"
+    ]
+  }
+}
