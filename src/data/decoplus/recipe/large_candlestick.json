@@ -3,7 +3,7 @@
   "key": {
     "#": "#minecraft:candles",
     "A": "minecraft:iron_ingot",
-    "B": "minecraft:chain"
+    "B": "minecraft:iron_chain"
   },
   "pattern": [
     "###",
