@@ -35,3 +35,4 @@ recipe give @a decoplus:nintendo_switch
 recipe give @a decoplus:easter_basket
 recipe give @a decoplus:ducky
 recipe give @a decoplus:animal_skull
+recipe give @a decoplus:bricks
