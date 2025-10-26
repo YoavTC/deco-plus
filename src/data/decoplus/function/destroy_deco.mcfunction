@@ -1,6 +1,10 @@
 # Summon item back
 $loot spawn ~ ~ ~ loot decoplus:$(deco_id)
-summon item ~ ~ ~ {Item:{id:"minecraft:armor_stand",count:1}}
+summon item ~ ~ ~ {Item:{id:"minecraft:armor_stand",count:1},Motion:[0,0.2,0]}
+
+# Effects
+particle cloud ~ ~.5 ~ 0.2 0.2 0.2 .3 20
+playsound minecraft:entity.player.attack.crit block @a ~ ~ ~ 1 1
 
 # Kill triggerbox, deco origin and all of its children (all related deco model entities)
 kill @n[type=interaction,tag=deco_triggerbox,distance=..2,nbt={attack:{}}]
