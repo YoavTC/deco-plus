@@ -39,3 +39,4 @@ recipe give @a decoplus:bricks
 recipe give @a decoplus:little_ghast
 recipe give @a decoplus:restaurant_sign
 recipe give @a decoplus:open_book
+recipe give @a decoplus:little_villager
