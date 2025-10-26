@@ -1,0 +1,75 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:yellow_dye",
+    "A": "minecraft:egg",
+    "B": "minecraft:feather"
+  },
+  "pattern": [
+    "#AB"
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTljN2JkNTgyNzJkODhhZWE1M2QwYjljM2M3NWQ4NzY3ZTAxYjIwYjlhODExMWRlNzVkZjlhYTlmMjcyYzk0MiJ9fX0="
+          }
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:block_interaction_range",
+          "id": "block_interaction_range",
+          "amount": -5,
+          "operation": "add_multiplied_total",
+          "slot": "hand"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "ducky",
+        "deco_width": 0.75,
+        "deco_height": 0.75
+      },
+      "minecraft:custom_name": {
+        "text": "Ducky Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by _cv9itoi_tattok_",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/40702",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:player_head"
+  },
+  "show_notification": false
+}
