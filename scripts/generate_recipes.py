@@ -281,7 +281,7 @@ def main():
     process_spawn_functions(spawn_function_dir)
 
 def process_spawn_functions(spawn_function_dir):
-    """Process all spawn function files to ensure summon commands have Tags:[deco_parent]"""
+    """Process all spawn function files to ensure summon commands have correct format"""
     import os
     import re
     
@@ -304,11 +304,33 @@ def process_spawn_functions(spawn_function_dir):
             modified = False
             
             for i, line in enumerate(lines):
-                if line.strip().startswith('summon '):
+                stripped_line = line.strip()
+                
+                # Remove leading slash if present
+                if stripped_line.startswith('/summon'):
+                    stripped_line = stripped_line[1:]
+                    modified = True
+                    print(f'  Updated {filename}: Removed leading slash')
+                
+                if stripped_line.startswith('summon '):
+                    # Ensure coordinates are ~ ~ ~
+                    # Match summon command with any coordinates
+                    coord_match = re.search(r'(summon\s+\S+\s+)([^\s]+\s+[^\s]+\s+[^\s]+)(\s+.*)', stripped_line)
+                    if coord_match:
+                        prefix = coord_match.group(1)
+                        coords = coord_match.group(2)
+                        suffix = coord_match.group(3)
+                        
+                        # Check if coordinates are not ~ ~ ~
+                        if coords != '~ ~ ~':
+                            stripped_line = prefix + '~ ~ ~' + suffix
+                            modified = True
+                            print(f'  Updated {filename}: Changed coordinates to ~ ~ ~')
+                    
                     # Check if Tags:[deco_parent] is already present
-                    if 'Tags:[deco_parent]' not in line:
+                    if 'Tags:[deco_parent]' not in stripped_line:
                         # Find the position after the coordinates (~ ~ ~) and before the opening brace
-                        match = re.search(r'(summon\s+\S+\s+~\s+~\s+~\s+)(\{.*)', line)
+                        match = re.search(r'(summon\s+\S+\s+~\s+~\s+~\s+)(\{.*)', stripped_line)
                         if match:
                             prefix = match.group(1)
                             nbt_data = match.group(2)
@@ -316,10 +338,11 @@ def process_spawn_functions(spawn_function_dir):
                             # Insert Tags:[deco_parent] at the beginning of NBT data
                             if nbt_data.startswith('{') and len(nbt_data) > 1:
                                 # Insert after the opening brace
-                                new_line = prefix + '{Tags:[deco_parent],' + nbt_data[1:]
-                                lines[i] = new_line
+                                stripped_line = prefix + '{Tags:[deco_parent],' + nbt_data[1:]
                                 modified = True
                                 print(f'  Updated {filename}: Added Tags:[deco_parent]')
+                
+                lines[i] = stripped_line
             
             # Write back if modified
             if modified:
