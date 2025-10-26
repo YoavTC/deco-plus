@@ -37,3 +37,4 @@ recipe give @a decoplus:ducky
 recipe give @a decoplus:animal_skull
 recipe give @a decoplus:bricks
 recipe give @a decoplus:little_ghast
+recipe give @a decoplus:restaurant_sign
