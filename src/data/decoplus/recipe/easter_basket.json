@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:stick",
+    "A": "minecraft:blue_egg",
+    "B": "minecraft:brown_egg",
+    "C": "minecraft:egg",
+    "D": "minecraft:composter"
+  },
+  "pattern": [
+    " # ",
+    "ABC",
+    " D "
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmU2ZDhjNjk4OGNkMGQxOTk5NzAzMDZhNGQ3NTY0NmQ5NzczZDcxMGViMjE5MzVkYjc3M2ViMjEyMTY3NjAyYiJ9fX0="
+          }
+        ]
+      },
+      "minecraft:attribute_modifiers": [
+        {
+          "type": "minecraft:block_interaction_range",
+          "id": "block_interaction_range",
+          "amount": -5,
+          "operation": "add_multiplied_total",
+          "slot": "hand"
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "minecraft:attribute_modifiers"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "easter_basket",
+        "deco_width": 1.0,
+        "deco_height": 1.0
+      },
+      "minecraft:custom_name": {
+        "text": "Easter Basket Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by q8h",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/47135",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:player_head"
+  },
+  "show_notification": false
+}

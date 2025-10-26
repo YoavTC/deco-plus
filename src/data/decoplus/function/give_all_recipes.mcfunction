@@ -32,3 +32,4 @@ recipe give @a decoplus:potato_barrel
 recipe give @a decoplus:weapons_barrel
 recipe give @a decoplus:japanese_bamboo_plant
 recipe give @a decoplus:nintendo_switch
+recipe give @a decoplus:easter_basket
