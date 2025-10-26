@@ -341,6 +341,12 @@ def process_spawn_functions(spawn_function_dir):
                                 stripped_line = prefix + '{Tags:[deco_parent],' + nbt_data[1:]
                                 modified = True
                                 print(f'  Updated {filename}: Added Tags:[deco_parent]')
+                    
+                    # Replace Count:1 with count:1 (fix capitalization)
+                    if 'Count:1' in stripped_line:
+                        stripped_line = stripped_line.replace('Count:1', 'count:1')
+                        modified = True
+                        print(f'  Updated {filename}: Changed Count:1 to count:1')
                 
                 lines[i] = stripped_line
             
