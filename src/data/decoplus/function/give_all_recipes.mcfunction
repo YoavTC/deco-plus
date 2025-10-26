@@ -30,3 +30,4 @@ recipe give @a decoplus:sweet_berries_barrel
 recipe give @a decoplus:fish_barrel
 recipe give @a decoplus:potato_barrel
 recipe give @a decoplus:weapons_barrel
+recipe give @a decoplus:japanese_bamboo_plant
