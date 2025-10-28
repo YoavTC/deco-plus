@@ -17,8 +17,9 @@ def generate_recipe_html_from_csv(csv_path):
     # Read the CSV file
     with open(csv_path, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
+        rows = sorted(reader, key=lambda x: x['id'])
         
-        for row in reader:
+        for row in rows:
             item_id = row['id']
             author = row['author']
             url = row['url']
