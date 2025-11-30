@@ -5,9 +5,9 @@
     "A": "minecraft:oak_leaves"
   },
   "pattern": [
-    "A A",
-    "AA ",
-    "#  "
+    " A ",
+    "AAA",
+    " # "
   ],
   "result": {
     "components": {

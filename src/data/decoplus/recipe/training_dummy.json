@@ -6,9 +6,9 @@
     "B": "minecraft:oak_fence"
   },
   "pattern": [
-    " # ",
-    "BBB",
-    " A "
+    "# B",
+    "BB ",
+    "A  "
   ],
   "result": {
     "components": {

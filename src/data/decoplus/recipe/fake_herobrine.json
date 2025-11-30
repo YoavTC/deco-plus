@@ -7,9 +7,9 @@
     "C": "minecraft:netherrack"
   },
   "pattern": [
-    "C B",
-    "#B ",
-    "A  "
+    " C ",
+    "B#B",
+    " A "
   ],
   "result": {
     "components": {

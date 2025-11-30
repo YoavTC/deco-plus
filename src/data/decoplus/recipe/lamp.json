@@ -6,9 +6,9 @@
     "B": "minecraft:oak_slab"
   },
   "pattern": [
-    "# #",
-    "A# ",
-    "B  "
+    " # ",
+    "#A#",
+    " B "
   ],
   "result": {
     "components": {

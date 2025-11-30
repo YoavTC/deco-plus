@@ -6,9 +6,9 @@
     "B": "minecraft:decorated_pot"
   },
   "pattern": [
-    "# #",
-    "A# ",
-    "B  "
+    " # ",
+    "#A#",
+    " B "
   ],
   "result": {
     "components": {

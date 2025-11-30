@@ -6,9 +6,9 @@
     "B": "minecraft:spyglass"
   },
   "pattern": [
-    "B #",
-    " #A",
-    "#  "
+    "  B",
+    " # ",
+    "#A#"
   ],
   "result": {
     "components": {

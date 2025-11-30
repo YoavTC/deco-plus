@@ -5,8 +5,8 @@
     "A": "minecraft:cookie"
   },
   "pattern": [
-    "A  ",
-    "#  "
+    " A ",
+    " # "
   ],
   "result": {
     "components": {

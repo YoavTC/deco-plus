@@ -6,9 +6,9 @@
     "B": "minecraft:lime_wool"
   },
   "pattern": [
-    "# B",
-    "AB ",
-    "B  "
+    " # ",
+    "BAB",
+    " B "
   ],
   "result": {
     "components": {

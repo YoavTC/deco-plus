@@ -6,9 +6,9 @@
     "B": "minecraft:lightning_rod"
   },
   "pattern": [
-    "B A",
-    "#A ",
-    "A  "
+    " B ",
+    "A#A",
+    " A "
   ],
   "result": {
     "components": {

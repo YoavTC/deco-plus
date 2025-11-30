@@ -5,9 +5,9 @@
     "A": "minecraft:dried_ghast"
   },
   "pattern": [
-    "# #",
-    "A# ",
-    "#  "
+    " # ",
+    "#A#",
+    " # "
   ],
   "result": {
     "components": {
