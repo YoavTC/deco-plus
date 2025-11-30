@@ -40,3 +40,14 @@ recipe give @a decoplus:little_ghast
 recipe give @a decoplus:restaurant_sign
 recipe give @a decoplus:open_book
 recipe give @a decoplus:little_villager
+recipe give @a decoplus:broken_pot
+recipe give @a decoplus:bread_basket
+recipe give @a decoplus:sushi_plate
+recipe give @a decoplus:little_enderman
+recipe give @a decoplus:target_practice
+recipe give @a decoplus:ship_in_a_bottle
+recipe give @a decoplus:training_dummy
+recipe give @a decoplus:standing_fishing_rod
+recipe give @a decoplus:book_and_ink
+recipe give @a decoplus:books_and_candles
+recipe give @a decoplus:cartography_table

@@ -5,9 +5,9 @@
     "A": "minecraft:red_wool"
   },
   "pattern": [
-    " A ",
-    " A ",
-    " # "
+    "A  ",
+    "A  ",
+    "#  "
   ],
   "result": {
     "components": {

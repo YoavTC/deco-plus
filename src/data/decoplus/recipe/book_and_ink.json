@@ -1,12 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": "minecraft:glow_berries",
-    "A": "minecraft:barrel"
+    "#": "minecraft:feather",
+    "A": "minecraft:ink_sac",
+    "B": "minecraft:flower_pot",
+    "C": "minecraft:writable_book"
   },
   "pattern": [
-    "#  ",
-    "A  "
+    "#A ",
+    "BC "
   ],
   "result": {
     "components": {
@@ -14,7 +16,7 @@
         "properties": [
           {
             "name": "textures",
-            "value": "ewogICJ0aW1lc3RhbXAiIDogMTc1OTk1NDkwMDczOSwKICAicHJvZmlsZUlkIiA6ICJjOWM5YzkwOWIxNTI0ZDgzODY5NzU2OTE0M2JmNTY4OCIsCiAgInByb2ZpbGVOYW1lIiA6ICJ6dWtlbWF4IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2Y0MWJjYjg5NzFmODU3ODYxZTU2MWZhZDI5ZDYzZTM0YTk0ZjcwYzUyMzhkNzgxMTkzNWM1YThkNTQwOWU3Y2EiCiAgICB9CiAgfQp9"
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTdhYjg5NTRmZDE5ZWFkMWE5MDQ4MjNlZGMwMGRjYTRjMDBhNDdkYzJiOTAwMWU4OWQ0MmUxYjIyZWQxNmY2ZSJ9fX0="
           }
         ]
       },
@@ -39,12 +41,12 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "glow_berries_barrel",
+        "deco_id": "book_and_ink",
         "deco_width": 1.0,
-        "deco_height": 1.0
+        "deco_height": 0.25
       },
       "minecraft:custom_name": {
-        "text": "Glow Berries Barrel Decoration",
+        "text": "Book And Ink Decoration",
         "color": "#ffbf00",
         "bold": false,
         "italic": false
@@ -52,7 +54,7 @@
       "minecraft:lore": [
         [
           {
-            "text": "Model by Ya_Brutal",
+            "text": "Model by Bom2u",
             "color": "dark_gray",
             "bold": false,
             "italic": false
@@ -60,7 +62,7 @@
         ],
         [
           {
-            "text": "bde.gg/b/57848",
+            "text": "bde.gg/b/23891",
             "color": "dark_gray",
             "bold": false,
             "italic": false

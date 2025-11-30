@@ -5,8 +5,8 @@
     "A": "minecraft:barrel"
   },
   "pattern": [
-    " # ",
-    " A "
+    "#  ",
+    "A  "
   ],
   "result": {
     "components": {

@@ -5,8 +5,8 @@
     "A": "minecraft:lectern"
   },
   "pattern": [
-    " # ",
-    " A "
+    "#  ",
+    "A  "
   ],
   "result": {
     "components": {

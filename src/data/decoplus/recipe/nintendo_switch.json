@@ -7,8 +7,8 @@
     "C": "minecraft:red_concrete"
   },
   "pattern": [
-    " # ",
-    "ABC"
+    "# A",
+    "BC "
   ],
   "result": {
     "components": {

@@ -6,8 +6,8 @@
     "B": "minecraft:copper_nugget"
   },
   "pattern": [
-    " #A",
-    " B "
+    "#A ",
+    "B  "
   ],
   "result": {
     "components": {

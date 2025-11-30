@@ -8,9 +8,9 @@
     "D": "minecraft:composter"
   },
   "pattern": [
-    " # ",
-    "ABC",
-    " D "
+    "# A",
+    "BC ",
+    "D  "
   ],
   "result": {
     "components": {

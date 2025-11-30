@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "#": "minecraft:glow_berries",
-    "A": "minecraft:barrel"
+    "#": "minecraft:fishing_rod",
+    "A": "minecraft:stick"
   },
   "pattern": [
-    "#  ",
-    "A  "
+    " # ",
+    " A ",
+    "A A"
   ],
   "result": {
     "components": {
@@ -14,7 +15,7 @@
         "properties": [
           {
             "name": "textures",
-            "value": "ewogICJ0aW1lc3RhbXAiIDogMTc1OTk1NDkwMDczOSwKICAicHJvZmlsZUlkIiA6ICJjOWM5YzkwOWIxNTI0ZDgzODY5NzU2OTE0M2JmNTY4OCIsCiAgInByb2ZpbGVOYW1lIiA6ICJ6dWtlbWF4IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2Y0MWJjYjg5NzFmODU3ODYxZTU2MWZhZDI5ZDYzZTM0YTk0ZjcwYzUyMzhkNzgxMTkzNWM1YThkNTQwOWU3Y2EiCiAgICB9CiAgfQp9"
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2FjMmIxMTkzYzEyNDU5ZGEzMjc3N2E2NmU3N2MzM2ViYTgzODhkOWNkNTE2ZDgzZjM2NTFiOWY3YmFmMCJ9fX0="
           }
         ]
       },
@@ -39,12 +40,12 @@
       },
       "minecraft:custom_data": {
         "deco": true,
-        "deco_id": "glow_berries_barrel",
+        "deco_id": "standing_fishing_rod",
         "deco_width": 1.0,
-        "deco_height": 1.0
+        "deco_height": 2.0
       },
       "minecraft:custom_name": {
-        "text": "Glow Berries Barrel Decoration",
+        "text": "Standing Fishing Rod Decoration",
         "color": "#ffbf00",
         "bold": false,
         "italic": false
@@ -52,7 +53,7 @@
       "minecraft:lore": [
         [
           {
-            "text": "Model by Ya_Brutal",
+            "text": "Model by S2ml",
             "color": "dark_gray",
             "bold": false,
             "italic": false
@@ -60,7 +61,7 @@
         ],
         [
           {
-            "text": "bde.gg/b/57848",
+            "text": "bde.gg/b/126322",
             "color": "dark_gray",
             "bold": false,
             "italic": false

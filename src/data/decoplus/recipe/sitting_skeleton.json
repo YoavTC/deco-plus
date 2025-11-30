@@ -6,8 +6,8 @@
     "B": "minecraft:skeleton_skull"
   },
   "pattern": [
-    " B ",
-    "#A#"
+    "B #",
+    "A# "
   ],
   "result": {
     "components": {

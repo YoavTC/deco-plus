@@ -6,9 +6,9 @@
     "B": "#beds"
   },
   "pattern": [
-    " # ",
-    " A ",
-    " B "
+    "#  ",
+    "A  ",
+    "B  "
   ],
   "result": {
     "components": {

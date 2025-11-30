@@ -5,8 +5,8 @@
     "A": "minecraft:iron_trapdoor"
   },
   "pattern": [
-    " A ",
-    " # "
+    "A  ",
+    "#  "
   ],
   "result": {
     "components": {
