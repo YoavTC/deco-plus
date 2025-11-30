@@ -70,7 +70,7 @@ function createRecipeFigure(item) {
 
   const view = document.createElement('img');
   view.className = 'view';
-  view.src = `decorations/${item.id}.png`;
+  view.src = `decorations/${item.id}.webp`;
   view.alt = toTitle(item.id);
 
   const recipeWrapper = document.createElement('div');
@@ -78,7 +78,7 @@ function createRecipeFigure(item) {
 
   const recipe = document.createElement('img');
   recipe.className = 'recipe';
-  recipe.src = `recipes/${item.id}.png`;
+  recipe.src = `recipes/${item.id}.webp`;
   recipe.alt = `${toTitle(item.id)} recipe`;
 
   recipeWrapper.appendChild(recipe);
@@ -117,8 +117,8 @@ function openModal(fig) {
     const modalRecipe = document.getElementById('modalRecipe');
 
     // modalImage.src = image.src; // Use the same image source
-    modalImage.src = "decorations/" + fig.id + ".png";
-    modalRecipe.src = "recipes/" + fig.id + ".png"
+    modalImage.src = "decorations/" + fig.id + ".webp";
+    modalRecipe.src = "recipes/" + fig.id + ".webp"
     modal.style.display = 'grid';
 }
 
