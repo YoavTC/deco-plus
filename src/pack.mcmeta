@@ -12,10 +12,10 @@
 			}
 		],
 		"pack_format": 88,
-		"min_format": 71,
+		"min_format": 88,
 		"max_format": 88,
 		"supported_formats": [
-			71,
+			88,
 			88
 		]
 	}
