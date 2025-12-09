@@ -1,7 +1,6 @@
 import shutil
 from pathlib import Path
-
-DESTINATION_PATH = r"C:\Users\owner\AppData\Roaming\PrismLauncher\instances\Technical\minecraft\saves\Deco Plus 4.0\datapacks\src"
+from config import DESTINATION_PATH
 
 def main():
     src_dir = Path(__file__).parent.parent / "src"
