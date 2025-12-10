@@ -6,9 +6,9 @@
     "B": "minecraft:spruce_boat"
   },
   "pattern": [
-    "# A",
-    "BAA",
-    "AA "
+    " # ",
+    "ABA",
+    "AAA"
   ],
   "result": {
     "components": {
