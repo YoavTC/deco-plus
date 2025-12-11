@@ -1,0 +1,172 @@
+name: Publish to CurseForge
+
+on:
+  release:
+    types: [published]
+
+jobs: 
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name:  Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version:  '3.x'
+
+      - name: Extract Minecraft versions from release
+        id: extract_versions
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets. CURSEFORGE_TOKEN }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+        run: |
+          # Extract Minecraft versions from release body
+          # Format: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->
+          VERSIONS=$(echo "$RELEASE_BODY" | grep -oP '(? <=<!-- minecraft-versions: ).*(? = -->)' || echo "")
+          
+          if [ -z "$VERSIONS" ]; then
+            echo "❌ No Minecraft versions specified in release body!"
+            echo "Please add:  <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->"
+            exit 1
+          fi
+          
+          echo "Found Minecraft versions: $VERSIONS"
+          
+          # Fetch all available game versions from CurseForge
+          echo "Fetching CurseForge game versions..."
+          GAME_VERSIONS=$(curl -s -H "X-Api-Token:  ${CURSEFORGE_TOKEN}" \
+            "https://minecraft.curseforge.com/api/game/versions")
+          
+          # Convert comma-separated versions to array and find their IDs
+          VERSION_IDS="["
+          FIRST=true
+          
+          IFS=',' read -ra VERSION_ARRAY <<< "$VERSIONS"
+          for VERSION in "${VERSION_ARRAY[@]}"; do
+            # Trim whitespace
+            VERSION=$(echo "$VERSION" | xargs)
+            
+            # Find the ID for this version
+            VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r ". [] | select(. name == \"$VERSION\") | .id")
+            
+            if [ -z "$VERSION_ID" ] || [ "$VERSION_ID" == "null" ]; then
+              echo "⚠️ Warning: Could not find CurseForge ID for Minecraft $VERSION"
+              continue
+            fi
+            
+            echo "✓ Minecraft $VERSION -> ID: $VERSION_ID"
+            
+            if [ "$FIRST" = true ]; then
+              VERSION_IDS="${VERSION_IDS}${VERSION_ID}"
+              FIRST=false
+            else
+              VERSION_IDS="${VERSION_IDS}, ${VERSION_ID}"
+            fi
+          done
+          
+          VERSION_IDS="${VERSION_IDS}]"
+          
+          if [ "$VERSION_IDS" == "[]" ]; then
+            echo "❌ No valid Minecraft versions found!"
+            exit 1
+          fi
+          
+          echo "Game version IDs:  $VERSION_IDS"
+          echo "version_ids=$VERSION_IDS" >> $GITHUB_OUTPUT
+
+      - name: Build data pack
+        run: |
+          # Create output directory
+          mkdir -p build
+          
+          # Create the zip file with the required files from src/
+          cd src
+          zip -r ../build/decorations-plus. zip data/ pack.png pack. mcmeta
+          cd .. 
+          
+          # Verify the zip was created
+          echo "📦 Created data pack:"
+          ls -lh build/decorations-plus.zip
+          echo ""
+          echo "📋 Contents:"
+          unzip -l build/decorations-plus.zip
+
+      - name: Upload to CurseForge
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          PROJECT_ID:  1356841
+          VERSION_IDS: ${{ steps. extract_versions.outputs.version_ids }}
+        run: |
+          # Prepare changelog (escape for JSON)
+          CHANGELOG=$(echo '${{ github.event.release. body }}' | jq -Rs .)
+          
+          # Determine release type based on tag
+          RELEASE_TYPE="release"
+          if [[ "${{ github. event.release.tag_name }}" == *"beta"* ]]; then
+            RELEASE_TYPE="beta"
+          elif [[ "${{ github.event.release. tag_name }}" == *"alpha"* ]]; then
+            RELEASE_TYPE="alpha"
+          fi
+          
+          echo "🚀 Uploading to CurseForge..."
+          echo "   Display Name:  Decorations Plus ${{ github. event.release.tag_name }}"
+          echo "   Release Type: $RELEASE_TYPE"
+          echo "   Game Versions:  $VERSION_IDS"
+          
+          # Upload the data pack to CurseForge
+          RESPONSE=$(curl -X POST \
+            "https://minecraft.curseforge.com/api/projects/${PROJECT_ID}/upload-file" \
+            -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
+            -F "metadata={
+              \"changelog\": $CHANGELOG,
+              \"changelogType\": \"markdown\",
+              \"displayName\": \"Decorations Plus ${{ github.event.release.tag_name }}\",
+              \"gameVersions\": ${VERSION_IDS},
+              \"releaseType\": \"${RELEASE_TYPE}\"
+            };type=application/json" \
+            -F "file=@build/decorations-plus.zip" \
+            -w "\nHTTP_STATUS:%{http_code}")
+          
+          # Extract HTTP status code
+          HTTP_STATUS=$(echo "$RESPONSE" | grep -oP 'HTTP_STATUS:\K\d+')
+          BODY=$(echo "$RESPONSE" | sed 's/HTTP_STATUS:[0-9]*//g')
+          
+          echo "Response: $BODY"
+          echo "HTTP Status: $HTTP_STATUS"
+          
+          # Check if upload was successful (200-299 status codes)
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            FILE_ID=$(echo "$BODY" | jq -r '. id // empty')
+            if [ -n "$FILE_ID" ]; then
+              echo "✅ Successfully uploaded to CurseForge!  File ID: $FILE_ID"
+              echo "file_id=$FILE_ID" >> $GITHUB_ENV
+            else
+              echo "✅ Upload completed with status $HTTP_STATUS"
+            fi
+          else
+            echo "❌ Upload failed with status $HTTP_STATUS"
+            echo "$BODY" | jq '.' 2>/dev/null || echo "$BODY"
+            exit 1
+          fi
+
+      - name:  Comment on Release
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fileId = process.env. file_id;
+            let body = '🎉 Successfully published to [CurseForge](https://www.curseforge.com/minecraft/data-packs/decorations-plus)!';
+            
+            if (fileId) {
+              body += `\n\n📦 File ID: ${fileId}`;
+            }
+            
+            await github. rest.repos.createReleaseComment({
+              owner:  context.repo.owner,
+              repo: context.repo.repo,
+              release_id: context. payload.release.id,
+              body: body
+            });
