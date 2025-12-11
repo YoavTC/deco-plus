@@ -91,6 +91,9 @@ jobs:
           done
           
           VERSION_IDS="${VERSION_IDS}]"
+          # FIX: collapse accidental newlines into commas
+          VERSION_IDS=$(echo "$VERSION_IDS" | tr '\n' ',' | sed 's/,,*/,/g' | sed 's/,]/]/')
+
           
           if [ "$VERSION_IDS" == "[]" ]; then
             echo "❌ No valid Minecraft versions found!"
