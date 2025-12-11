@@ -9,92 +9,119 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      #
+      # Download manually-attached ZIP from the GitHub Release
+      #
       - name: Download ZIP from Release Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Fetching release assets…"
+          echo "🔍 Searching release assets…"
 
-          # Get asset download URL
-          ASSET_URL=$(curl -s \
+          RELEASE_DATA=$(curl -s \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/releases/latest \
-            | jq -r '.assets[] | select(.name | endswith(".zip")) | .url')
+            https://api.github.com/repos/${{ github.repository }}/releases/latest)
 
-          if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" = "null" ]; then
-            echo "❌ No ZIP asset found in the release!"
+          ASSET_URL=$(echo "$RELEASE_DATA" | grep -oP '"url": "\K[^"]+' | grep '/assets/' | head -n 1)
+
+          if [ -z "$ASSET_URL" ]; then
+            echo "❌ No ZIP found in release assets!"
             exit 1
           fi
 
-          echo "Found asset URL: $ASSET_URL"
+          echo "📦 Found asset URL: $ASSET_URL"
 
-          # Download the ZIP
           curl -L \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "Accept: application/octet-stream" \
             "$ASSET_URL" \
             -o decorations-plus.zip
 
-          echo "📦 Downloaded decorations-plus.zip"
+          echo "✅ ZIP downloaded: decorations-plus.zip"
 
+      #
+      # Extract release metadata
+      #
       - name: Prepare Release Info
         id: info
         run: |
           echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          echo "is_prerelease=${{ github.event.release.prerelease }}" >> $GITHUB_OUTPUT
+
           echo "body<<EOF" >> $GITHUB_OUTPUT
           echo "${{ github.event.release.body }}" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo "is_prerelease=${{ github.event.release.prerelease }}" >> $GITHUB_OUTPUT
 
+      #
+      # Upload to CurseForge
+      #
       - name: Upload to CurseForge
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           PROJECT_ID: 1356841
           RELEASE_TAG: ${{ steps.info.outputs.tag }}
-          IS_PRERELEASE: ${{ steps.info.outputs.is_prerelease }}
           RELEASE_BODY: ${{ steps.info.outputs.body }}
+          IS_PRERELEASE: ${{ steps.info.outputs.is_prerelease }}
         run: |
           echo "📄 Release tag: $RELEASE_TAG"
           echo "📘 Pre-release: $IS_PRERELEASE"
 
-          # Extract version list from HTML comment
+          #
+          # Parse version list from release notes
+          #
           VERSIONS=$(echo "$RELEASE_BODY" | sed -n 's/.*<!-- minecraft-versions: \(.*\) -->.*/\1/p' | tr -d "\r")
+
           if [ -z "$VERSIONS" ]; then
-            echo "❌ No minecraft versions found!"
+            echo "❌ No minecraft-versions comment found!"
             exit 1
           fi
 
-          echo "Found Minecraft versions: $VERSIONS"
+          echo "🎯 Minecraft versions: $VERSIONS"
 
+          #
           # Fetch CurseForge version list
-          GAME_VERSIONS=$(curl -s -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
+          #
+          GAME_VERSIONS=$(curl -s -H "X-Api-Token: $CURSEFORGE_TOKEN" \
             "https://minecraft.curseforge.com/api/game/versions")
 
-          # Filter valid MC version IDs using Node
-          VERSION_IDS=$(node <<EOF
+          #
+          # Export these so Node can read them
+          #
+          export GAME_VERSIONS="$GAME_VERSIONS"
+          export VERSIONS="$VERSIONS"
+
+          #
+          # Filter ONLY real Minecraft versions using Node.js
+          #
+          VERSION_IDS=$(node <<'EOF'
           const all = JSON.parse(process.env.GAME_VERSIONS);
           const wanted = process.env.VERSIONS.split(",").map(v => v.trim());
 
-          const matched = all.filter(v =>
+          const matches = all.filter(v =>
             wanted.includes(v.name) &&
             v.gameVersionStatus === 1 &&
             v.versionType === "release" &&
             v.gameVersionTypeID === null
           );
 
-          console.log(JSON.stringify(matched.map(v => v.id)));
+          console.log(JSON.stringify(matches.map(v => v.id)));
           EOF
           )
 
-          echo "🎯 Valid CurseForge IDs: $VERSION_IDS"
+          echo "🔥 Matching CurseForge IDs: $VERSION_IDS"
 
           if [ "$VERSION_IDS" = "[]" ]; then
-            echo "❌ No valid CurseForge version IDs found!"
+            echo "❌ No valid CurseForge version IDs matched!"
             exit 1
           fi
 
+          #
           # Determine release type
+          #
           RELEASE_TYPE="release"
           if [[ "$RELEASE_TAG" == *"beta"* ]] || [[ "$IS_PRERELEASE" == "true" ]]; then
             RELEASE_TYPE="beta"
@@ -104,23 +131,29 @@ jobs:
 
           echo "🚀 Release type: $RELEASE_TYPE"
 
-          # Build metadata JSON (safe, exact formatting)
-          METADATA=$(node <<EOF
-          console.log(JSON.stringify({
+          #
+          # Build JSON metadata using Node
+          #
+          METADATA=$(node <<'EOF'
+          const out = {
             changelog: process.env.RELEASE_BODY,
             changelogType: "markdown",
             displayName: "Decorations Plus " + process.env.RELEASE_TAG,
             gameVersions: JSON.parse(process.env.VERSION_IDS),
-            releaseType: "${RELEASE_TYPE}"
-          }));
+            releaseType: process.env.RELEASE_TYPE
+          };
+          console.log(JSON.stringify(out));
           EOF
           )
 
-          echo "📝 Final metadata:"
+          echo "📝 Metadata:"
           echo "$METADATA"
 
-          # Upload file
-          echo "📤 Uploading to CurseForge…"
+          #
+          # Upload to CurseForge
+          #
+          echo "📤 Uploading file to CurseForge…"
+
           RESPONSE=$(curl -X POST \
             "https://minecraft.curseforge.com/api/projects/${PROJECT_ID}/upload-file" \
             -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
@@ -137,9 +170,9 @@ jobs:
           if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
             FILE_ID=$(node -e "console.log(JSON.parse(process.argv[1]).id || '')" "$BODY")
             echo "file_id=$FILE_ID" >> $GITHUB_ENV
-            echo "✅ Upload success — File ID: $FILE_ID"
+            echo "✅ CurseForge upload successful — File ID: $FILE_ID"
           else
-            echo "❌ Upload failed"
+            echo "❌ Upload failed!"
             echo "$BODY"
             exit 1
           fi
