@@ -73,10 +73,14 @@ jobs:
           for VERSION in "${VERSION_ARRAY[@]}"; do
             VERSION=$(echo "$VERSION" | xargs)
             
-            VERSION_ID=$(echo "$GAME_VERSIONS" \
-              | jq -r '.[] 
-                | select(.name == "'$VERSION'" and .gameVersionTypeID == 73250)
-                | .id')
+            VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r '
+              .[] |
+              select(.name == "'$VERSION'") |
+              select(.gameVersionStatus == 1) |
+              select(.versionType == "release") |
+              select(.gameVersionTypeID == null) |
+              .id
+            ')
 
             
             if [ -z "$VERSION_ID" ] || [ "$VERSION_ID" == "null" ]; then
