@@ -1,14 +1,14 @@
 name: Publish to CurseForge
 
-on: 
+on:  
   release:
-    types:  [published]
+    types: [published]
 
 jobs:
-  publish:
-    runs-on:  ubuntu-latest
+  publish: 
+    runs-on: ubuntu-latest
     
-    steps:
+    steps: 
       - name: Download release asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,8 +27,8 @@ jobs:
             exit 1
           fi
           
-          echo "📥 Downloading decorations-plus.zip from:  $ASSET_URL"
-          curl -L -H "Authorization:  token $GITHUB_TOKEN" \
+          echo "📥 Downloading decorations-plus.zip from: $ASSET_URL"
+          curl -L -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/octet-stream" \
             "$ASSET_URL" -o decorations-plus.zip
           
@@ -53,8 +53,8 @@ jobs:
           IS_PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           # Extract Minecraft versions from release body
-          # Format: <!-- minecraft-versions:  1.21, 1.21.2, 1.21.3 -->
-          VERSIONS=$(echo "$RELEASE_BODY" | grep -oP '(? <=<!-- minecraft-versions: ).*(? = -->)' || echo "")
+          # Format: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->
+          VERSIONS=$(echo "$RELEASE_BODY" | sed -n 's/.*<!-- minecraft-versions: \(.*\) -->.*/\1/p')
           
           if [ -z "$VERSIONS" ]; then
             echo "❌ No Minecraft versions specified in release body!"
@@ -153,11 +153,11 @@ jobs:
             exit 1
           fi
 
-      - name:  Comment on Release
+      - name: Comment on Release
         if: success()
         uses: actions/github-script@v7
         with:
-          script: |
+          script:  |
             const fileId = process.env.file_id;
             let body = '🎉 Successfully published to [CurseForge](https://www.curseforge.com/minecraft/data-packs/decorations-plus)!';
             
@@ -166,7 +166,7 @@ jobs:
             }
             
             await github.rest.repos.createReleaseComment({
-              owner: context.repo.owner,
+              owner:  context.repo.owner,
               repo: context.repo.repo,
               release_id: context.payload.release.id,
               body: body
