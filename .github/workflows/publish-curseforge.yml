@@ -92,7 +92,8 @@ jobs:
           
           VERSION_IDS="${VERSION_IDS}]"
           # FIX: collapse accidental newlines into commas
-          VERSION_IDS=$(echo "$VERSION_IDS" | tr '\n' ',' | sed 's/,,*/,/g' | sed 's/,]/]/')
+          VERSION_IDS=$(echo "$VERSION_IDS" | sed 's/],$/]/')
+
 
           
           if [ "$VERSION_IDS" == "[]" ]; then
