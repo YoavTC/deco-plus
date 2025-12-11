@@ -9,19 +9,51 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name:  Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
+      - name:  Set up Python
         uses: actions/setup-python@v5
         with:
           python-version:  '3.x'
 
+      - name: Download release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets. GITHUB_TOKEN }}
+        run:  |
+          # Get the release assets
+          ASSETS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets")
+          
+          # Find the decorations-plus.zip file
+          ASSET_URL=$(echo "$ASSETS" | jq -r '.[] | select(. name == "decorations-plus.zip") | .url')
+          
+          if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" == "null" ]; then
+            echo "❌ Could not find decorations-plus.zip in release assets!"
+            echo "Available assets:"
+            echo "$ASSETS" | jq -r '.[].name'
+            exit 1
+          fi
+          
+          echo "📥 Downloading decorations-plus.zip..."
+          curl -L -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" -o decorations-plus.zip
+          
+          # Verify download
+          if [ -f "decorations-plus.zip" ]; then
+            echo "✅ Downloaded successfully!"
+            ls -lh decorations-plus. zip
+            echo ""
+            echo "📋 Contents:"
+            unzip -l decorations-plus.zip
+          else
+            echo "❌ Download failed!"
+            exit 1
+          fi
+
       - name: Extract Minecraft versions from release
         id: extract_versions
-        env:
-          CURSEFORGE_TOKEN: ${{ secrets. CURSEFORGE_TOKEN }}
-          RELEASE_BODY: ${{ github.event.release.body }}
+        env: 
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          RELEASE_BODY: ${{ github. event.release.body }}
         run: |
           # Extract Minecraft versions from release body
           # Format: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->
@@ -37,7 +69,7 @@ jobs:
           
           # Fetch all available game versions from CurseForge
           echo "Fetching CurseForge game versions..."
-          GAME_VERSIONS=$(curl -s -H "X-Api-Token:  ${CURSEFORGE_TOKEN}" \
+          GAME_VERSIONS=$(curl -s -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
             "https://minecraft.curseforge.com/api/game/versions")
           
           # Convert comma-separated versions to array and find their IDs
@@ -77,26 +109,9 @@ jobs:
           echo "Game version IDs:  $VERSION_IDS"
           echo "version_ids=$VERSION_IDS" >> $GITHUB_OUTPUT
 
-      - name: Build data pack
-        run: |
-          # Create output directory
-          mkdir -p build
-          
-          # Create the zip file with the required files from src/
-          cd src
-          zip -r ../build/decorations-plus. zip data/ pack.png pack. mcmeta
-          cd .. 
-          
-          # Verify the zip was created
-          echo "📦 Created data pack:"
-          ls -lh build/decorations-plus.zip
-          echo ""
-          echo "📋 Contents:"
-          unzip -l build/decorations-plus.zip
-
       - name: Upload to CurseForge
         env:
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_TOKEN: ${{ secrets. CURSEFORGE_TOKEN }}
           PROJECT_ID:  1356841
           VERSION_IDS: ${{ steps. extract_versions.outputs.version_ids }}
         run: |
@@ -109,6 +124,11 @@ jobs:
             RELEASE_TYPE="beta"
           elif [[ "${{ github.event.release. tag_name }}" == *"alpha"* ]]; then
             RELEASE_TYPE="alpha"
+          fi
+          
+          # Check if this is a pre-release
+          if [[ "${{ github.event. release.prerelease }}" == "true" ]]; then
+            RELEASE_TYPE="beta"
           fi
           
           echo "🚀 Uploading to CurseForge..."
@@ -127,7 +147,7 @@ jobs:
               \"gameVersions\": ${VERSION_IDS},
               \"releaseType\": \"${RELEASE_TYPE}\"
             };type=application/json" \
-            -F "file=@build/decorations-plus.zip" \
+            -F "file=@decorations-plus.zip" \
             -w "\nHTTP_STATUS:%{http_code}")
           
           # Extract HTTP status code
@@ -165,8 +185,8 @@ jobs:
             }
             
             await github. rest.repos.createReleaseComment({
-              owner:  context.repo.owner,
+              owner: context. repo.owner,
               repo: context.repo.repo,
-              release_id: context. payload.release.id,
+              release_id: context.payload. release.id,
               body: body
             });
