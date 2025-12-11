@@ -92,6 +92,16 @@ jobs:
           
           VERSION_IDS="${VERSION_IDS}]"
           # FIX: collapse accidental newlines into commas
+          # Normalize accidental newlines into commas
+          VERSION_IDS=$(echo "$VERSION_IDS" | tr '\n' ',')
+
+          # Remove duplicated commas
+          VERSION_IDS=$(echo "$VERSION_IDS" | sed 's/,,*/,/g')
+
+          # Fix comma right before ]
+          VERSION_IDS=$(echo "$VERSION_IDS" | sed 's/,]/]/')
+
+          # Remove comma after ]
           VERSION_IDS=$(echo "$VERSION_IDS" | sed 's/],$/]/')
 
 
