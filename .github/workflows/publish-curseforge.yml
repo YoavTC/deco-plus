@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       #
-      # Download ZIP file uploaded manually to the release
+      # Download ZIP file uploaded manually to the GitHub Release
       #
       - name: Download ZIP from Release Assets
         env:
@@ -71,7 +71,7 @@ jobs:
           echo "📘 Pre-release: $IS_PRERELEASE"
 
           #
-          # Extract version list from <!-- minecraft-versions: ... -->
+          # Extract version list from release notes comment
           #
           VERSIONS=$(echo "$RELEASE_BODY" | sed -n 's/.*<!-- minecraft-versions: \(.*\) -->.*/\1/p' | tr -d "\r")
 
@@ -89,20 +89,20 @@ jobs:
             "https://minecraft.curseforge.com/api/game/versions")
 
           #
-          # Filter valid MC version IDs using Node.js via STDIN
+          # Use Node.js to filter valid MC version IDs via STDIN
           #
           export VERSIONS="$VERSIONS"
 
-          VERSION_IDS=$(echo "$GAME_VERSIONS" | node <<'EOF'
+          VERSION_IDS=$(printf "%s" "$GAME_VERSIONS" | node <<'EOF'
           const fs = require("fs");
 
-          // Read the huge JSON from STDIN (safe, no env size limits)
+          // Read the FULL JSON from STDIN (safe, not truncated)
           const all = JSON.parse(fs.readFileSync(0, "utf8"));
 
-          // Version list from environment
+          // Read version list
           const wanted = process.env.VERSIONS.split(",").map(v => v.trim());
 
-          // Filter ONLY real MC versions (no loaders, no Java, no aliases)
+          // Filter ONLY real MC versions
           const matches = all.filter(v =>
             wanted.includes(v.name) &&
             v.gameVersionStatus === 1 &&
