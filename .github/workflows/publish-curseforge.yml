@@ -9,14 +9,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Download ZIP from Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fetching release assets…"
 
-      - name: Download Release Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: decorations-plus
-          path: .
+          # Get asset download URL
+          ASSET_URL=$(curl -s \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/releases/latest \
+            | jq -r '.assets[] | select(.name | endswith(".zip")) | .url')
+
+          if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" = "null" ]; then
+            echo "❌ No ZIP asset found in the release!"
+            exit 1
+          fi
+
+          echo "Found asset URL: $ASSET_URL"
+
+          # Download the ZIP
+          curl -L \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/octet-stream" \
+            "$ASSET_URL" \
+            -o decorations-plus.zip
+
+          echo "📦 Downloaded decorations-plus.zip"
 
       - name: Prepare Release Info
         id: info
