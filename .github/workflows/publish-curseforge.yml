@@ -73,7 +73,11 @@ jobs:
           for VERSION in "${VERSION_ARRAY[@]}"; do
             VERSION=$(echo "$VERSION" | xargs)
             
-            VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r ".[]|select(.name==\"$VERSION\")|.id")
+            VERSION_ID=$(echo "$GAME_VERSIONS" \
+              | jq -r '.[] 
+                | select(.name == "'$VERSION'" and .gameVersionTypeID == 73250)
+                | .id')
+
             
             if [ -z "$VERSION_ID" ] || [ "$VERSION_ID" == "null" ]; then
               echo "⚠️ Warning: Could not find CurseForge ID for Minecraft $VERSION"
