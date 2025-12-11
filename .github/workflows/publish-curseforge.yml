@@ -32,7 +32,6 @@ jobs:
             -H "Accept: application/octet-stream" \
             "$ASSET_URL" -o decorations-plus.zip
           
-          # Verify download
           if [ -f "decorations-plus.zip" ]; then
             echo "✅ Downloaded successfully!"
             ls -lh decorations-plus.zip
@@ -53,7 +52,6 @@ jobs:
           IS_PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           # Extract Minecraft versions from release body
-          # Format: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->
           VERSIONS=$(echo "$RELEASE_BODY" | sed -n 's/.*<!-- minecraft-versions: \(.*\) -->.*/\1/p')
           
           if [ -z "$VERSIONS" ]; then
@@ -64,21 +62,17 @@ jobs:
           
           echo "Found Minecraft versions: $VERSIONS"
           
-          # Fetch all available game versions from CurseForge
-          echo "Fetching CurseForge game versions..."
+          echo "Fetching CurseForge game versions."
           GAME_VERSIONS=$(curl -s -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
             "https://minecraft.curseforge.com/api/game/versions")
           
-          # Convert comma-separated versions to array and find their IDs
           VERSION_IDS="["
           FIRST=true
           
           IFS=',' read -ra VERSION_ARRAY <<< "$VERSIONS"
           for VERSION in "${VERSION_ARRAY[@]}"; do
-            # Trim whitespace
             VERSION=$(echo "$VERSION" | xargs)
             
-            # Find the ID for this version (fixed jq syntax)
             VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r ".[]|select(.name==\"$VERSION\")|.id")
             
             if [ -z "$VERSION_ID" ] || [ "$VERSION_ID" == "null" ]; then
@@ -86,7 +80,7 @@ jobs:
               continue
             fi
             
-            echo "✓ Minecraft $VERSION -> ID:  $VERSION_ID"
+            echo "✓ Minecraft $VERSION -> ID: $VERSION_ID"
             
             if [ "$FIRST" = true ]; then
               VERSION_IDS="${VERSION_IDS}${VERSION_ID}"
@@ -105,9 +99,9 @@ jobs:
           
           echo "Game version IDs: $VERSION_IDS"
           
-          # Prepare changelog (escape for JSON)
-          CHANGELOG=$(echo "$RELEASE_BODY" | jq -Rs .)
-          
+          # Prepare changelog
+          CHANGELOG_RAW="$RELEASE_BODY"
+
           # Determine release type
           RELEASE_TYPE="release"
           if [[ "$RELEASE_TAG" == *"beta"* ]] || [[ "$IS_PRERELEASE" == "true" ]]; then
@@ -117,38 +111,51 @@ jobs:
           fi
           
           echo ""
-          echo "🚀 Uploading to CurseForge..."
-          echo "   Display Name:  Decorations Plus $RELEASE_TAG"
+          echo "🚀 Uploading to CurseForge."
+          echo "   Display Name: Decorations Plus $RELEASE_TAG"
           echo "   Release Type: $RELEASE_TYPE"
           echo "   Game Versions: $VERSION_IDS"
           echo ""
-          
-          # Upload the data pack to CurseForge
+
+          # -----------------------------
+          # NEW: Proper JSON metadata builder
+          # -----------------------------
+          METADATA=$(jq -n \
+            --arg changelog "$CHANGELOG_RAW" \
+            --arg displayName "Decorations Plus $RELEASE_TAG" \
+            --arg releaseType "$RELEASE_TYPE" \
+            --argjson versions "$VERSION_IDS" \
+            '{
+              changelog: $changelog,
+              changelogType: "markdown",
+              displayName: $displayName,
+              gameVersions: $versions,
+              releaseType: $releaseType
+            }')
+
           RESPONSE=$(curl -X POST \
             "https://minecraft.curseforge.com/api/projects/${PROJECT_ID}/upload-file" \
             -H "X-Api-Token: ${CURSEFORGE_TOKEN}" \
-            -F "metadata={\"changelog\": $CHANGELOG,\"changelogType\":\"markdown\",\"displayName\":\"Decorations Plus $RELEASE_TAG\",\"gameVersions\":${VERSION_IDS},\"releaseType\":\"${RELEASE_TYPE}\"};type=application/json" \
+            -F "metadata=$METADATA;type=application/json" \
             -F "file=@decorations-plus.zip" \
             -w "\nHTTP_STATUS:%{http_code}")
           
-          # Extract HTTP status code
           HTTP_STATUS=$(echo "$RESPONSE" | grep -oP 'HTTP_STATUS:\K\d+')
           BODY=$(echo "$RESPONSE" | sed 's/HTTP_STATUS:[0-9]*//g')
           
           echo "Response: $BODY"
           echo "HTTP Status: $HTTP_STATUS"
           
-          # Check if upload was successful (200-299 status codes)
           if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
             FILE_ID=$(echo "$BODY" | jq -r '.id//empty')
             if [ -n "$FILE_ID" ]; then
-              echo "✅ Successfully uploaded to CurseForge!  File ID: $FILE_ID"
               echo "file_id=$FILE_ID" >> $GITHUB_ENV
+              echo "✅ Successfully uploaded! File ID: $FILE_ID"
             else
-              echo "✅ Upload completed with status $HTTP_STATUS"
+              echo "✅ Upload completed!"
             fi
           else
-            echo "❌ Upload failed with status $HTTP_STATUS"
+            echo "❌ Upload failed"
             echo "$BODY" | jq '.' 2>/dev/null || echo "$BODY"
             exit 1
           fi
@@ -159,7 +166,7 @@ jobs:
         with:
           script:  |
             const fileId = process.env.file_id;
-            let body = '🎉 Successfully published to [CurseForge](https://www.curseforge.com/minecraft/data-packs/decorations-plus)!';
+            let body = '🎉 Successfully published to CurseForge!';
             
             if (fileId) {
               body += `\n\n📦 File ID: ${fileId}`;
@@ -167,7 +174,7 @@ jobs:
             
             await github.rest.repos.createReleaseComment({
               owner:  context.repo.owner,
-              repo: context.repo.repo,
+              repo:   context.repo.repo,
               release_id: context.payload.release.id,
               body: body
             });
