@@ -1,15 +1,15 @@
 name: Publish to CurseForge
 
-on:
+on: 
   release:
-    types: [published]
+    types:  [published]
 
-jobs: 
+jobs:  
   publish:
     runs-on: ubuntu-latest
     
     steps:
-      - name:  Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version:  '3.x'
@@ -23,7 +23,7 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets")
           
           # Find the decorations-plus.zip file
-          ASSET_URL=$(echo "$ASSETS" | jq -r '.[] | select(. name == "decorations-plus.zip") | .url')
+          ASSET_URL=$(echo "$ASSETS" | jq -r '.[] | select(. name == "decorations-plus. zip") | .url')
           
           if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" == "null" ]; then
             echo "❌ Could not find decorations-plus.zip in release assets!"
@@ -40,7 +40,7 @@ jobs:
           # Verify download
           if [ -f "decorations-plus.zip" ]; then
             echo "✅ Downloaded successfully!"
-            ls -lh decorations-plus. zip
+            ls -lh decorations-plus.zip
             echo ""
             echo "📋 Contents:"
             unzip -l decorations-plus.zip
@@ -49,11 +49,11 @@ jobs:
             exit 1
           fi
 
-      - name: Extract Minecraft versions from release
+      - name:  Extract Minecraft versions from release
         id: extract_versions
-        env: 
+        env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-          RELEASE_BODY: ${{ github. event.release.body }}
+          RELEASE_BODY: ${{ github.event.release.body }}
         run: |
           # Extract Minecraft versions from release body
           # Format: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->
@@ -61,7 +61,7 @@ jobs:
           
           if [ -z "$VERSIONS" ]; then
             echo "❌ No Minecraft versions specified in release body!"
-            echo "Please add:  <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->"
+            echo "Please add: <!-- minecraft-versions: 1.21, 1.21.2, 1.21.3 -->"
             exit 1
           fi
           
@@ -82,7 +82,7 @@ jobs:
             VERSION=$(echo "$VERSION" | xargs)
             
             # Find the ID for this version
-            VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r ". [] | select(. name == \"$VERSION\") | .id")
+            VERSION_ID=$(echo "$GAME_VERSIONS" | jq -r ". [] | select(.name == \"$VERSION\") | .id")
             
             if [ -z "$VERSION_ID" ] || [ "$VERSION_ID" == "null" ]; then
               echo "⚠️ Warning: Could not find CurseForge ID for Minecraft $VERSION"
@@ -106,35 +106,35 @@ jobs:
             exit 1
           fi
           
-          echo "Game version IDs:  $VERSION_IDS"
+          echo "Game version IDs: $VERSION_IDS"
           echo "version_ids=$VERSION_IDS" >> $GITHUB_OUTPUT
 
-      - name: Upload to CurseForge
+      - name:  Upload to CurseForge
         env:
           CURSEFORGE_TOKEN: ${{ secrets. CURSEFORGE_TOKEN }}
           PROJECT_ID:  1356841
           VERSION_IDS: ${{ steps. extract_versions.outputs.version_ids }}
         run: |
           # Prepare changelog (escape for JSON)
-          CHANGELOG=$(echo '${{ github.event.release. body }}' | jq -Rs .)
+          CHANGELOG=$(echo '${{ github.event.release.body }}' | jq -Rs .)
           
           # Determine release type based on tag
           RELEASE_TYPE="release"
-          if [[ "${{ github. event.release.tag_name }}" == *"beta"* ]]; then
+          if [[ "${{ github.event.release.tag_name }}" == *"beta"* ]]; then
             RELEASE_TYPE="beta"
-          elif [[ "${{ github.event.release. tag_name }}" == *"alpha"* ]]; then
+          elif [[ "${{ github.event. release.tag_name }}" == *"alpha"* ]]; then
             RELEASE_TYPE="alpha"
           fi
           
           # Check if this is a pre-release
-          if [[ "${{ github.event. release.prerelease }}" == "true" ]]; then
+          if [[ "${{ github. event.release.prerelease }}" == "true" ]]; then
             RELEASE_TYPE="beta"
           fi
           
           echo "🚀 Uploading to CurseForge..."
-          echo "   Display Name:  Decorations Plus ${{ github. event.release.tag_name }}"
+          echo "   Display Name:  Decorations Plus ${{ github.event.release.tag_name }}"
           echo "   Release Type: $RELEASE_TYPE"
-          echo "   Game Versions:  $VERSION_IDS"
+          echo "   Game Versions: $VERSION_IDS"
           
           # Upload the data pack to CurseForge
           RESPONSE=$(curl -X POST \
@@ -143,7 +143,7 @@ jobs:
             -F "metadata={
               \"changelog\": $CHANGELOG,
               \"changelogType\": \"markdown\",
-              \"displayName\": \"Decorations Plus ${{ github.event.release.tag_name }}\",
+              \"displayName\": \"Decorations Plus ${{ github. event.release.tag_name }}\",
               \"gameVersions\": ${VERSION_IDS},
               \"releaseType\": \"${RELEASE_TYPE}\"
             };type=application/json" \
@@ -172,8 +172,8 @@ jobs:
             exit 1
           fi
 
-      - name:  Comment on Release
-        if: success()
+      - name: Comment on Release
+        if:  success()
         uses: actions/github-script@v7
         with:
           script: |
@@ -184,9 +184,9 @@ jobs:
               body += `\n\n📦 File ID: ${fileId}`;
             }
             
-            await github. rest.repos.createReleaseComment({
-              owner: context. repo.owner,
+            await github.rest.repos.createReleaseComment({
+              owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: context.payload. release.id,
+              release_id: context.payload.release.id,
               body: body
             });
