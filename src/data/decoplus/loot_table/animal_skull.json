@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:player_head",
+          "name": "minecraft:debug_stick",
           "functions": [
             {
               "function": "minecraft:set_components",
@@ -16,20 +16,6 @@
                       "name": "textures",
                       "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmE4ODg3ODE0NTc4Y2U3YzU0MGQ3YWI4Y2M2YjJhMmUyMmE3NDkyY2M4NmM2NWE3ZTgzOWM4ODdiMmVkNjIifX19"
                     }
-                  ]
-                },
-                "minecraft:attribute_modifiers": [
-                  {
-                    "type": "minecraft:block_interaction_range",
-                    "id": "block_interaction_range",
-                    "amount": -5,
-                    "operation": "add_multiplied_total",
-                    "slot": "hand"
-                  }
-                ],
-                "minecraft:tooltip_display": {
-                  "hidden_components": [
-                    "minecraft:attribute_modifiers"
                   ]
                 },
                 "minecraft:equippable": {
@@ -43,6 +29,7 @@
                   "deco_width": 1.25,
                   "deco_height": 0.5
                 },
+                "minecraft:item_model": "minecraft:player_head",
                 "minecraft:custom_name": {
                   "text": "Animal Skull Decoration",
                   "color": "#ffbf00",

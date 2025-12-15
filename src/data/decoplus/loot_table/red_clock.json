@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:player_head",
+          "name": "minecraft:debug_stick",
           "functions": [
             {
               "function": "minecraft:set_components",
@@ -16,20 +16,6 @@
                       "name": "textures",
                       "value": "ewogICJ0aW1lc3RhbXAiIDogMTc0NTE2ODkyOTIzNCwKICAicHJvZmlsZUlkIiA6ICJhZWNkODIxZTQyYzE0ZDJlOThmNTA1OTg1MWI5OWMzNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJSb2RyaVgyMDc1IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzc2NTRiYzRhMjNjZTMzNWI3NGVlMGI3OWFiMGMyZjIzZjZmMzdmN2NiYThiYmE1ZjZiMDdlMTdiMjhiYmIwZDciLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ=="
                     }
-                  ]
-                },
-                "minecraft:attribute_modifiers": [
-                  {
-                    "type": "minecraft:block_interaction_range",
-                    "id": "block_interaction_range",
-                    "amount": -5,
-                    "operation": "add_multiplied_total",
-                    "slot": "hand"
-                  }
-                ],
-                "minecraft:tooltip_display": {
-                  "hidden_components": [
-                    "minecraft:attribute_modifiers"
                   ]
                 },
                 "minecraft:equippable": {
@@ -43,6 +29,7 @@
                   "deco_width": 0.5,
                   "deco_height": 0.5
                 },
+                "minecraft:item_model": "minecraft:player_head",
                 "minecraft:custom_name": {
                   "text": "Red Clock Decoration",
                   "color": "#ffbf00",

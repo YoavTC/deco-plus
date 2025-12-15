@@ -141,20 +141,6 @@ def create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, au
                         }
                     ]
                 },
-                "minecraft:attribute_modifiers": [
-                    {
-                        "type": "minecraft:block_interaction_range",
-                        "id": "block_interaction_range",
-                        "amount": -5,
-                        "operation": "add_multiplied_total",
-                        "slot": "hand"
-                    }
-                ],
-                "minecraft:tooltip_display": {
-                    "hidden_components": [
-                        "minecraft:attribute_modifiers"
-                    ]
-                },
                 "minecraft:equippable": {
                     "slot": "chest",
                     "equip_sound": "minecraft:ui.cartography_table.take_result",
@@ -167,6 +153,7 @@ def create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, au
                     "deco_height": height
                     # "deco_size": deco_size
                 },
+                "minecraft:item_model": "minecraft:player_head",
                 "minecraft:custom_name": {
                     "text": custom_name,
                     "color": "#ffbf00",
@@ -193,7 +180,7 @@ def create_recipe_json(item_id, recipe_keys, recipe_pattern, texture, hitbox, au
                 ]
             },
             "count": 1,
-            "id": "minecraft:player_head"
+            "id": "minecraft:debug_stick"
         },
         "show_notification": False
     }

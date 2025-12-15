@@ -41,7 +41,7 @@
         "equipment": {
           "chest": {
             "items": [
-              "minecraft:debug_stick"
+              "minecraft:player_head"
             ]
           }
         }
