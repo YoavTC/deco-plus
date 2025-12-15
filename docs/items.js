@@ -2,8 +2,10 @@
 const items = [
   { id: "animal_skull", author: "HaniVindinggame", url: "bde.gg/b/55184" },
   { id: "bamboo_flower_cart", author: "DaftCraftYT", url: "bde.gg/b/922" },
+  { id: "bar_stool", author: "Rasterio_", url: "bde.gg/b/9594" },
   { id: "book_and_ink", author: "Bom2u", url: "bde.gg/b/23891" },
   { id: "books_and_candles", author: "HaniVindinggame", url: "bde.gg/b/39963" },
+  { id: "bottles", author: "PinkMike", url: "bde.gg/b/38485" },
   { id: "bread_basket", author: "Rasterio_", url: "bde.gg/b/85166" },
   { id: "bricks", author: "Vinc_bde", url: "bde.gg/b/99059" },
   { id: "broken_pot", author: "Markovich001", url: "bde.gg/b/126156" },
@@ -32,6 +34,7 @@ const items = [
   { id: "nintendo_switch", author: "AlmazAr3", url: "bde.gg/b/45429" },
   { id: "open_book", author: "HaniVindinggame", url: "bde.gg/b/39966" },
   { id: "potato_barrel", author: "Ya_Brutal", url: "bde.gg/b/57892" },
+  { id: "potted_plants", author: "AlbensL", url: "bde.gg/b/11482" },
   { id: "punching_bag", author: "Dewox", url: "bde.gg/b/36518" },
   { id: "red_clock", author: "__ZolMik__", url: "bde.gg/b/30929" },
   { id: "restaurant_sign", author: "AlmazAr3", url: "bde.gg/b/90291" },
