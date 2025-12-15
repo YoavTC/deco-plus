@@ -53,3 +53,4 @@ recipe give @a decoplus:books_and_candles
 recipe give @a decoplus:cartography_table
 recipe give @a decoplus:bottles
 recipe give @a decoplus:potted_plants
+recipe give @a decoplus:bar_stool
