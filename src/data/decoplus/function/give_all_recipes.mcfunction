@@ -51,3 +51,4 @@ recipe give @a decoplus:standing_fishing_rod
 recipe give @a decoplus:book_and_ink
 recipe give @a decoplus:books_and_candles
 recipe give @a decoplus:cartography_table
+recipe give @a decoplus:bottles
