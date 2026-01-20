@@ -56,3 +56,4 @@ recipe give @a decoplus:potted_plants
 recipe give @a decoplus:bar_stool
 recipe give @a decoplus:dynamite_barrel
 recipe give @a decoplus:sandcastle
+recipe give @a decoplus:pallets
