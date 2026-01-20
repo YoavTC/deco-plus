@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:sand",
+    "A": "minecraft:red_banner"
+  },
+  "pattern": [
+    "A  ",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhlMTZiZjlkNTYxNTlkZjI1ODlmZjc2NTZmODdjYWYwZjc2MjQwZDE0ZGZhNTU2ZjJiN2FjZGUzNzYzMWY4ZCJ9fX0="
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "sandcastle",
+        "deco_width": 1.0,
+        "deco_height": 0.75
+      },
+      "minecraft:item_model": "minecraft:player_head",
+      "minecraft:custom_name": {
+        "text": "Sandcastle Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by HaniVindinggame",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/34700",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:debug_stick"
+  },
+  "show_notification": false
+}
