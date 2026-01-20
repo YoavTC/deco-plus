@@ -57,3 +57,4 @@ recipe give @a decoplus:bar_stool
 recipe give @a decoplus:dynamite_barrel
 recipe give @a decoplus:sandcastle
 recipe give @a decoplus:pallets
+recipe give @a decoplus:snail
