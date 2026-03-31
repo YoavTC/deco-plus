@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:pale_oak_planks",
+    "A": "minecraft:mangrove_planks",
+    "B": "minecraft:mangrove_stairs",
+    "C": "minecraft:pale_oak_fence_gate",
+    "D": "minecraft:bone"
+  },
+  "pattern": [
+    " A ",
+    "BCB",
+    "#D#"
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzU0NjVmNzdlN2ZkNDIxNzM4NDk5OGMzMzg1OWFkOTYzNmUxODkzYmVlNDA1ZGQyNTE5NDIzYjUxNzY3In19fQ=="
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "doghouse",
+        "deco_width": 1.25,
+        "deco_height": 1.25
+      },
+      "minecraft:item_model": "minecraft:player_head",
+      "minecraft:custom_name": {
+        "text": "Doghouse Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by Tartabouffon",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/217929",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:debug_stick"
+  },
+  "show_notification": false
+}
