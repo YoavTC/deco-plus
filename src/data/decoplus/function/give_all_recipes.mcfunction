@@ -59,3 +59,4 @@ recipe give @a decoplus:sandcastle
 recipe give @a decoplus:pallets
 recipe give @a decoplus:snail
 recipe give @a decoplus:crab
+recipe give @a decoplus:gramophone
