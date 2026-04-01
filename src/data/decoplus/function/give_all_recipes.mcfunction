@@ -61,3 +61,4 @@ recipe give @a decoplus:snail
 recipe give @a decoplus:crab
 recipe give @a decoplus:gramophone
 recipe give @a decoplus:doghouse
+recipe give @a decoplus:cannon

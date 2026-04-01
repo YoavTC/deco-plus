@@ -1,0 +1,65 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:flint_and_steel",
+    "A": "minecraft:iron_block",
+    "B": "minecraft:spruce_planks",
+    "C": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "# A",
+    "AAC",
+    "BBA"
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODQzODYzZjE3MDBlZTQwYzRlNTc0NzVmMjU1MGI2NTViODk5OGE2MThjMzg4NTBiZDY5YjZkZDUyZDhjODY0NCJ9fX0="
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "cannon",
+        "deco_width": 2.5,
+        "deco_height": 1.75
+      },
+      "minecraft:item_model": "minecraft:player_head",
+      "minecraft:custom_name": {
+        "text": "Cannon Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by shard",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/36637",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:debug_stick"
+  },
+  "show_notification": false
+}
