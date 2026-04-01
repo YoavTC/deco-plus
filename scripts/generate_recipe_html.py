@@ -7,7 +7,7 @@ def generate_items_array_lines(csv_path):
     items = []
     with open(csv_path, 'r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
-        rows = sorted(reader, key=lambda x: x['id'])
+        rows = reader
         for row in rows:
             items.append({
                 'id': row['id'].strip(),
