@@ -2,7 +2,7 @@
 	"pack": {
 		"description": [
 			{
-				"text": "Made by Yoav TC\n",
+				"text": "Decorations Plus v6.0\n",
 				"color": "dark_gray"
 			},
 			{
@@ -11,7 +11,7 @@
 				"underlined": true
 			}
 		],
-		"min_format": 101,
+		"min_format": 88,
 		"max_format": 101
 	}
 }
