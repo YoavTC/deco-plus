@@ -64,3 +64,4 @@ recipe give @a decoplus:doghouse
 recipe give @a decoplus:cannon
 recipe give @a decoplus:pumpkin_pie
 recipe give @a decoplus:anchor
+recipe give @a decoplus:lava_chicken

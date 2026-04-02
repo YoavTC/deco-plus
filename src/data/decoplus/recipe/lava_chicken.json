@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:lava_bucket",
+    "A": "minecraft:chicken"
+  },
+  "pattern": [
+    " # ",
+    " A "
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMzYjFiYmNlZWRhZGZmOGQzY2Y3ODY4NjBiMTYzYmQyNDAyNDYwNmZmOWU0OTlkMGMzOTBjYmUyNjkwYjc3OCJ9fX0="
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "lava_chicken",
+        "deco_width": 0.5,
+        "deco_height": 0.5
+      },
+      "minecraft:item_model": "minecraft:player_head",
+      "minecraft:custom_name": {
+        "text": "Lava Chicken Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by PinkMike",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/38522",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:debug_stick"
+  },
+  "show_notification": false
+}
