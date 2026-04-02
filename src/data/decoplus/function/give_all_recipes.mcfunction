@@ -63,3 +63,4 @@ recipe give @a decoplus:gramophone
 recipe give @a decoplus:doghouse
 recipe give @a decoplus:cannon
 recipe give @a decoplus:pumpkin_pie
+recipe give @a decoplus:anchor
