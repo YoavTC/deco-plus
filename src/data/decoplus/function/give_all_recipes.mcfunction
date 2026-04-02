@@ -65,3 +65,4 @@ recipe give @a decoplus:cannon
 recipe give @a decoplus:pumpkin_pie
 recipe give @a decoplus:anchor
 recipe give @a decoplus:lava_chicken
+recipe give @a decoplus:teapot
