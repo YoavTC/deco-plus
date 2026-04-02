@@ -64,6 +64,7 @@ const items = [
   { id: "gramophone", author: "NotchDaVinci", url: "bde.gg/b/256161" },
   { id: "doghouse", author: "Tartabouffon", url: "bde.gg/b/217929" },
   { id: "cannon", author: "shard", url: "bde.gg/b/36637" },
+  { id: "pumpkin_pie", author: "RubySteve", url: "bde.gg/b/160404" },
 ];
 
 function toTitle(id) {
