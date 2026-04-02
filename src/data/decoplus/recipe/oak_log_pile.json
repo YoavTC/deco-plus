@@ -1,0 +1,61 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "#oak_logs"
+  },
+  "pattern": [
+    "## ",
+    "###"
+  ],
+  "result": {
+    "components": {
+      "minecraft:profile": {
+        "properties": [
+          {
+            "name": "textures",
+            "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzI3ODU5YjdjZWEzODgzNjJjMTkyOThiZjIyMWFlZDAzOWVlNzQ5MDMzNWIyYTJlMmJhNmJlOGQxM2M0NTNhNyJ9fX0="
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "chest",
+        "equip_sound": "minecraft:ui.cartography_table.take_result",
+        "allowed_entities": "minecraft:armor_stand"
+      },
+      "minecraft:custom_data": {
+        "deco": true,
+        "deco_id": "oak_log_pile",
+        "deco_width": 1.0,
+        "deco_height": 1.0
+      },
+      "minecraft:item_model": "minecraft:player_head",
+      "minecraft:custom_name": {
+        "text": "Oak Log Pile Decoration",
+        "color": "#ffbf00",
+        "bold": false,
+        "italic": false
+      },
+      "minecraft:lore": [
+        [
+          {
+            "text": "Model by __ZolMik__",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ],
+        [
+          {
+            "text": "bde.gg/b/12620",
+            "color": "dark_gray",
+            "bold": false,
+            "italic": false
+          }
+        ]
+      ]
+    },
+    "count": 1,
+    "id": "minecraft:debug_stick"
+  },
+  "show_notification": false
+}
