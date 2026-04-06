@@ -272,6 +272,8 @@ def process_spawn_functions(spawn_function_dir):
     import os
     import re
     
+    safeguard_command = 'execute if entity @s[type=player] run return run tellraw @s {text:"The spawn commands are not meant to be used manually, please use the item and armour stand instead!", color:"red"}'
+
     print(f'\nProcessing spawn function files...')
     
     for filename in os.listdir(spawn_function_dir):
@@ -286,11 +288,13 @@ def process_spawn_functions(spawn_function_dir):
             if not content.strip():
                 continue
             
-            # Process each line that starts with summon
+            # Process each line and normalize summon commands
             lines = content.split('\n')
             modified = False
-            
-            for i, line in enumerate(lines):
+
+            normalized_lines = []
+
+            for line in lines:
                 stripped_line = line.strip()
                 
                 # Remove leading slash if present
@@ -334,13 +338,19 @@ def process_spawn_functions(spawn_function_dir):
                         stripped_line = stripped_line.replace('Count:1', 'count:1')
                         modified = True
                         print(f'  Updated {filename}: Changed Count:1 to count:1')
-                
-                lines[i] = stripped_line
+
+                    # Ensure each summon command is protected from manual player use
+                    if not normalized_lines or normalized_lines[-1] != safeguard_command:
+                        normalized_lines.append(safeguard_command)
+                        modified = True
+                        print(f'  Updated {filename}: Added safeguard before summon command')
+
+                normalized_lines.append(stripped_line)
             
             # Write back if modified
             if modified:
                 with open(filepath, 'w', encoding='utf-8') as f:
-                    f.write('\n'.join(lines))
+                    f.write('\n'.join(normalized_lines))
     
     print('Spawn function processing complete.')
 
