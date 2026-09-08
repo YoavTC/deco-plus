@@ -11,7 +11,7 @@
 					}
 				},
 				"entity": {
-					"type": "minecraft:armor_stand",
+					"entity_type": "minecraft:armor_stand",
 					"equipment": {
 						"mainhand": {
 							"items": "minecraft:air"
