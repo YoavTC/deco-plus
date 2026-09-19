@@ -2,7 +2,7 @@
 	"pack": {
 		"description": [
 			{
-				"text": "Decorations Plus v6.2\n",
+				"text": "Decorations Plus v6.3\n",
 				"color": "dark_gray"
 			},
 			{
@@ -11,7 +11,7 @@
 				"underlined": true
 			}
 		],
-		"min_format": 107,
-		"max_format": 107
+		"min_format": 121,
+		"max_format": 121
 	}
 }
